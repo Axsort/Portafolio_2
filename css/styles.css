@@ -10,9 +10,23 @@ body {
   padding: 100px 0;
 }
 
-
 .section-padding {
   padding: 80px 0;
+}
+
+#ver-proyectos {
+  background-color: #fcfcfe; 
+  color: rgb(9, 4, 4); 
+  border: none; 
+  padding: 10px 20px; 
+  border-radius: 10px; 
+  transition: background-color 0.5s ease; 
+}
+
+#ver-proyectos:hover {
+  background: linear-gradient(90deg, #85690379 0%, #0107096c 30%, #7171735c 85%); 
+  color: white; 
+  cursor: pointer;
 }
 
 /* Proyectos: tarjeta con hover */
@@ -26,9 +40,16 @@ body {
 
 /* Navbar */
 .navbar {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 95%;
+  border-radius: 300px;
+  box-shadow: 0 2px 30px 2px rgba(0, 0, 0, 0.1);
 }
 
+.navbar-nav{
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+}
 
 .logo-hero {
   width: 150px;
@@ -92,6 +113,16 @@ body {
 .foto:hover {
   transform: rotateY(360deg);
   transition: transform 2s ease;
+}
+#habilidades{
+  background-image: url(../media/30304-cdigo-3840x2160.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+}
+#aptitudes{
+  color: white;
 }
 
 /* Tipografía general */
@@ -160,7 +191,7 @@ body {
 
 .apt-soft {
   background: #c4020249;
-  color: #111827;
+  color: #f7f8fc;
 }
 
 /* Mejor espaciado entre columnas en Bootstrap 5 */
@@ -184,13 +215,30 @@ body.dark-mode .navbar {
   background-color: #020617 !important;
   box-shadow: 0 2px 12px rgba(15, 23, 42, 0.9);
 }
+#theme-toggle{
+  border: none;
+}
 
+#theme-toggle:hover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  
+}
 body.dark-mode .navbar .navbar-brand {
   color: #e5e7eb !important;
+}
+body.dark-mode .navbar .navbar-brand:hover{
+  color: #667eea !important;
 }
 
 body.dark-mode .navbar .nav-link {
   color: #cbd5f5 !important;
+}
+body.dark-mode .navbar-toggler {
+  background-color: #fefefe;
+}
+
+body.dark-mode .navbar-toggler:hover {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 body.dark-mode .navbar .nav-link:hover {
@@ -200,6 +248,16 @@ body.dark-mode .navbar .nav-link:hover {
 /* Hero: mantenemos el gradiente pero oscurecemos textos */
 body.dark-mode .hero {
   background: linear-gradient(135deg, #010d3f 0%, #4f316c 100%);
+  color: #f9fafb;
+}
+
+body.dark-mode #ver-proyectos {
+  background-color: #0f172a; 
+  color: #e5e7eb; 
+}
+
+body.dark-mode #ver-proyectos:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #0f172a 100%);
   color: #f9fafb;
 }
 
@@ -259,7 +317,8 @@ body.dark-mode footer {
 /* Tarjetas de aptitudes */
 body.dark-mode .apt-frontend {
   background: linear-gradient(135deg, #eab308 0%, #f97316 100%);
-  color: #111827;
+
+  box-shadow: 0 0 0 0 #f97316;
 }
 
 body.dark-mode .apt-backend {
@@ -269,10 +328,52 @@ body.dark-mode .apt-backend {
 
 body.dark-mode .apt-tools {
   background: linear-gradient(135deg, #222947 0%, #1d4ed8 100%);
+  box-shadow: 0 0 0 0 #1d4ed8;
   color: #e5e7eb;
 }
 
 body.dark-mode .apt-soft {
-  background: linear-gradient(135deg, #7f1d1d 0%, #b91c1c 100%);
-  color: #f9fafb;
+  background: linear-gradient(135deg, #ff6b6b, #e1dacb);
 }
+
+
+@media (max-width: 576px) {
+  .foto {
+    margin-bottom: 40px;
+  }
+  .navbar {
+    width: 100%;
+    display: flex;
+  }
+  #theme-toggle {
+    margin: 0 10px 0 70px;
+  }
+  .navbar-brand{
+    font-size: 15px;
+    margin-left: 10px;
+    margin: 0 -25px 0 1px;
+  }
+  .navbar-nav {
+    display: grid;
+    grid-template-columns: 130px 130px;
+    gap: 0;
+    justify-content: center;
+  }
+  .nav-item {
+    text-align: center;
+  }
+  .navbar-toggler{
+  height: 30px;
+  width: 45px;
+  display: flex;
+  align-items: center;
+  }
+  .apt-card{
+    height: 0px;
+  }
+.card {
+  margin: 10px;
+}
+  
+}
+
