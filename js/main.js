@@ -19,6 +19,72 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
+//Hero
+const hero = document.querySelector('.hero');
+const heroTexto = document.getElementById('heroContenido');
+const heroTitulo = document.getElementById('heroTitulo');
+const heroDescripcion = document.getElementById('heroDescripcion');
+const heroDetalle = document.getElementById('heroDetalle');
+const heroPaso = document.getElementById('heroPaso');
+
+const pasos = [
+  {
+    titulo: 'Desarrollador Java Full Stack Junior',
+    descripcion: 'Construyo aplicaciones web responsivas con HTML, CSS, JavaScript, Java y DBases.',
+    detalle: 'Haz click en este banner para ver cómo está construido este sitio.',
+    etiqueta: ''
+  },
+  {
+    titulo: 'Animaciones y microinteracciones',
+    descripcion: 'Este banner usa transiciones CSS y animaciones suaves para guiar tu atención.',
+    detalle: 'Implementado con @keyframes, transitions y clases que se activan al hacer click.',
+    etiqueta: ''
+  },
+  {
+    titulo: 'Interacciones controladas por JavaScript',
+    descripcion: 'Cada click cambia el contenido usando un arreglo de pasos y manejo de eventos.',
+    detalle: 'Uso addEventListener, manipulación del DOM y un índice de estado en JS.',
+    etiqueta: ''
+  },
+  {
+    titulo: 'Diseño responsivo',
+    descripcion: 'El layout se adapta con flexbox/grid y media queries para móvil y escritorio.',
+    detalle: 'Probado en diferentes breakpoints para asegurar legibilidad y buena jerarquía visual.',
+    etiqueta: ''
+  },
+  {
+    titulo: 'Integración full stack',
+    descripcion: 'Combino frontend moderno con backend en Java y bases de datos SQL.',
+    detalle: 'Experiencia en e‑commerce, CRUD y consumo de APIs REST.',
+    etiqueta: ''
+  }
+];
+
+let indicePaso = 0;
+
+function actualizarHero() {
+  const paso = pasos[indicePaso];
+  heroTitulo.textContent = paso.titulo;
+  heroDescripcion.textContent = paso.descripcion;
+  heroDetalle.textContent = paso.detalle;
+  heroPaso.textContent = paso.etiqueta;
+}
+
+actualizarHero();
+
+hero.addEventListener('click', () => {
+  heroTexto.classList.add('cambiando');
+
+  setTimeout(() => {
+    indicePaso = (indicePaso + 1) % pasos.length; 
+    actualizarHero();
+    heroTexto.classList.remove('cambiando');
+  }, 250);
+});
+
+
+
+
 // Año dinámico del footer
 document.getElementById("year").textContent = new Date().getFullYear();
 

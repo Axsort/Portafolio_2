@@ -5,28 +5,87 @@ body {
 
 /* Hero */
 .hero {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-image: url(../media/css.avif);
   color: white;
   padding: 100px 0;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
+.hero:hover {
+  cursor: pointer;
+}
+
+.animate__fadeInDownBig{
+  animation-duration: 1s;
+  animation-delay: 0s;
+}
+
+.hero.text-center {
+  transition: opacity 0.3s ease;
+}
+
+#heroTitulo {
+color: #0a0a0a;
+  font-size: 48px;
+  text-align: center;
+  text-shadow: 
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 15px #0ff,
+    0 0 20px #0ff,
+    0 0 30px #0ff;
+}
+
+.hero-texto {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hero-texto.cambiando {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+#heroDescripcion{
+    color: #000000;
+    text-shadow: 
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 15px rgb(140, 0, 255),
+    0 0 20px rgb(140, 0, 255),
+    0 0 30px rgb(144, 0, 255);
+    font-weight: 600;
+}
+
+.hero-detalle {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #000000;
+    text-shadow: 
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 15px rgb(140, 0, 255),
+    0 0 20px rgb(140, 0, 255),
+    0 0 30px rgb(144, 0, 255);
+    font-weight: 600;
+}
+
+.hero-paso {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+    color: #000000;
+    text-shadow: 
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 15px rgb(140, 0, 255),
+    0 0 20px rgb(140, 0, 255),
+    0 0 30px rgb(144, 0, 255);
+}
+
 
 .section-padding {
   padding: 80px 0;
-}
-
-#ver-proyectos {
-  background-color: #fcfcfe; 
-  color: rgb(9, 4, 4); 
-  border: none; 
-  padding: 10px 20px; 
-  border-radius: 10px; 
-  transition: background-color 0.5s ease; 
-}
-
-#ver-proyectos:hover {
-  background: linear-gradient(90deg, #85690379 0%, #0107096c 30%, #7171735c 85%); 
-  color: white; 
-  cursor: pointer;
 }
 
 /* Proyectos: tarjeta con hover */
@@ -43,6 +102,7 @@ body {
   width: 95%;
   border-radius: 300px;
   box-shadow: 0 2px 30px 2px rgba(0, 0, 0, 0.1);
+  
 }
 
 .navbar-nav{
@@ -51,13 +111,6 @@ body {
   justify-content: center;
 }
 
-.logo-hero {
-  width: 150px;
-  height: 150px;
-  object-fit: contain;
-}
-
-/* Clases nuevas para estilos que estaban inline */
 .texto-grande {
   font-size: 20px;
 }
@@ -72,6 +125,34 @@ body {
   transform: scale(1.3) rotate(20deg);
   transition: transform 0.3s ease;
 }
+
+.links {
+  text-decoration: none;
+}
+
+.navbar-brand,
+.nav-link {
+  color: rgb(255, 255, 255);
+      text-shadow: 
+    0 0 5px #080808,
+    0 0 10px #50379a,
+    0 0 15px rgb(30, 0, 255),
+    0 0 20px rgb(30, 0, 255),
+    0 0 30px rgb(30, 0, 255);
+}
+
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ======= Sobre Mi ======= */
+#sobre-mi {
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+/* ======= Proyectos ====== */
 
 .tarjeta-personalizada {
   background: linear-gradient(
@@ -203,8 +284,11 @@ body {
   width: 100%;
 }
 
-/* ---------- DARK MODE  ---------- */
 
+
+/*======================================
+|   ---------- DARK MODE  ----------   |
+=======================================*/
 body.dark-mode {
   background-color: #020617; /* gris-azul muy oscuro */
   color: #e5e7eb;            /* gris claro */
@@ -247,7 +331,7 @@ body.dark-mode .navbar .nav-link:hover {
 
 /* Hero: mantenemos el gradiente pero oscurecemos textos */
 body.dark-mode .hero {
-  background: linear-gradient(135deg, #010d3f 0%, #4f316c 100%);
+  background-image: url(../media/css.avif);
   color: #f9fafb;
 }
 
@@ -338,6 +422,10 @@ body.dark-mode .apt-soft {
 
 
 @media (max-width: 576px) {
+  #heroTitulo{
+    font-size: 2.5rem;
+  }
+  
   .foto {
     margin-bottom: 40px;
   }
@@ -367,6 +455,7 @@ body.dark-mode .apt-soft {
   width: 45px;
   display: flex;
   align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   }
   .apt-card{
     height: 0px;
