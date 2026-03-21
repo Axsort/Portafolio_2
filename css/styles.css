@@ -147,40 +147,217 @@ color: #0a0a0a;
   100% { background-position: 200% 50%; }
 }
 
-/* ======= Sobre Mi ======= */
-#sobre-mi {
-  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+/* ====================== 
+|        Sobre Mi        |
+========================= */
+
+.sobreMi-container {
+margin-top: -3rem;
+margin-bottom: -2rem;
 }
+
+.links {
+  position: relative;
+  display: inline-block;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: #6200ff;
+  text-decoration: none;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+/* Subrayado animado */
+.links::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #0d6efd, #6f42c1);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease-out;
+  border-radius: 999px;
+}
+
+/* Hover: color, leve movimiento y subrayado */
+.links:hover {
+  color: #7847ff;
+  transform: translateY(-1px);
+}
+
+.links:hover::after {
+  transform: scaleX(1);
+}
+
+/* Opcional: estado activo/focus accesible */
+.links:focus-visible {
+  outline: 2px solid #0d6efd;
+  outline-offset: 3px;
+}
+
 
 /* ======= Proyectos ====== */
 
+/* Contenedor base de la tarjeta */
 .tarjeta-personalizada {
-  background: linear-gradient(
-    135deg,
-    #667eea79 0%,
-    #764ba26a 100%
-  ); 
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: radial-gradient(circle at top left, #1f2933, #0b0c10);
+  overflow: hidden;
+  padding: 1px; /* para el borde "neón" */
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease,
+    background 0.35s ease;
+  transform-style: preserve-3d;
 }
 
+/* Glow en hover + ligero tilt 3D */
+.tarjeta-personalizada:hover {
+  transform: translateY(-8px) rotateX(3deg) rotateY(-3deg);
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.65),
+    0 0 30px rgba(124, 58, 237, 0.55);
+  border-color: rgba(129, 140, 248, 0.9);
+  background: radial-gradient(circle at top left, #312e81, #020617);
+}
+
+/* Glow de color con pseudo-elemento */
+.tarjeta-personalizada::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: conic-gradient(
+    from 180deg,
+    #22d3ee,
+    #a855f7,
+    #f97316,
+    #22d3ee
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  filter: blur(22px);
+  z-index: 0;
+}
+
+.tarjeta-personalizada:hover::before {
+  opacity: 0.7;
+}
+
+/* Capa interna real de contenido */
+.tarjeta-personalizada .card-body {
+  position: relative;
+  z-index: 1;
+  background: rgba(15, 23, 42, 0.94);
+  backdrop-filter: blur(18px);
+  border-radius: 14px;
+  padding: 1.2rem 1.1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Título con animación sutil */
+.tarjeta-personalizada .card-title {
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+  color: #e5e7eb;
+  font-size: 1.05rem;
+  letter-spacing: 0.03em;
+  position: relative;
+}
+
+.tarjeta-personalizada .card-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.35rem;
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(90deg, #38bdf8, #a855f7);
+  border-radius: 999px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.tarjeta-personalizada:hover .card-title::after {
+  transform: scaleX(1);
+}
+
+/* Texto */
+.tarjeta-personalizada .card-text {
+  flex-grow: 1;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #cbd5f5;
+  margin-top: 0.25rem;
+  margin-bottom: 1.1rem;
+}
+
+/* Botón personalizado mejorado */
 .btn-personalizado {
-  background-color: #fcfcfe; 
-  color: rgb(9, 4, 4); 
-  border: none; 
-  padding: 10px 20px; 
-  border-radius: 10px; 
-  transition: background-color 0.5s ease; 
+  align-self: flex-start;
+  background: radial-gradient(circle at 0 0, #4f46e5, #7c3aed);
+  color: #f9fafb;
+  border: none;
+  border-radius: 999px;
+  padding: 0.65rem 1.35rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.5);
 }
 
 .btn-personalizado:hover {
-  background: linear-gradient(
-    90deg,
-    #85690379 0%,
-    #0107096c 30%,
-    #7171735c 85%
-  ); 
-  color: white; 
-  cursor: pointer;
+  transform: translateY(-1px) scale(1.02);
+  box-shadow:
+    0 8px 24px rgba(79, 70, 229, 0.65),
+    0 0 18px rgba(94, 234, 212, 0.45);
+  background: radial-gradient(circle at 100% 0, #22c55e, #4f46e5);
 }
+
+/* Animación de “latido” muy suave al hacer focus */
+.btn-personalizado:focus-visible {
+  outline: none;
+  animation: pulse-btn 1.1s ease-out 1;
+}
+
+@keyframes pulse-btn {
+  0% {
+    box-shadow: 0 0 0 0 rgba(94, 234, 212, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 20px rgba(94, 234, 212, 0);
+  }
+}
+
+/* Para que todas las cards dentro de col-sm-4 estiren a la misma altura */
+.col-sm-4 .card {
+  height: 100%;
+}
+
+/* Mobile: columnas apiladas */
+@media (max-width: 768px) {
+  .col-sm-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
 
 .foto {
   width: 300px; 
@@ -282,6 +459,109 @@ body {
 
 .row.g-4 > [class*="col-"] > .apt-card {
   width: 100%;
+}
+
+/*=======================
+| FORMULARIO DE CONTACTO |
+========================*/
+
+
+#contacto {
+  position: relative;
+  overflow: hidden;
+}
+
+#contacto::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #6f42c1, #0d6efd);
+  z-index: 0;
+}
+
+#contacto .container {
+  position: relative;
+  z-index: 1;
+}
+
+#contacto .col-lg-8 {
+  background: rgba(15, 15, 20, 0.75);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  padding: 2.5rem 2.2rem;
+}
+
+#contacto h2 {
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+#contacto p.text-muted {
+  color: #ffffff !important;
+}
+
+#contacto .form-label {
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+
+#contacto .form-control {
+  background-color: rgba(15, 15, 25, 0.9);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #f5f5ff;
+  padding: 0.75rem 0.9rem;
+  transition: all 0.2s ease;
+}
+
+#contacto .form-control::placeholder {
+  color: #7f7f93;
+}
+
+#contacto .form-control:focus {
+  background-color: rgba(20, 20, 35, 0.95);
+  border-color: #6f42c1;
+  box-shadow: 0 0 0 1px rgba(111, 66, 193, 0.5);
+  color: #ffffff;
+}
+
+#contacto .btn-primary {
+  background: linear-gradient(135deg, #6f42c1, #0d6efd);
+  border: none;
+  border-radius: 999px;
+  padding: 0.85rem 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  box-shadow: 0 12px 30px rgba(13, 110, 253, 0.45);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+#contacto .btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 40px rgba(13, 110, 253, 0.55);
+  filter: brightness(1.05);
+}
+
+#contacto .btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 18px rgba(13, 110, 253, 0.4);
+}
+
+#status {
+  margin-top: 15px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 576px) {
+  #contacto .col-lg-8 {
+    padding: 1.8rem 1.4rem;
+  }
 }
 
 
@@ -418,6 +698,16 @@ body.dark-mode .apt-tools {
 
 body.dark-mode .apt-soft {
   background: linear-gradient(135deg, #ff6b6b, #e1dacb);
+}
+
+body.dark-mode #contacto::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, #6f42c1 0),
+              radial-gradient(circle at bottom right, #0d6efd 0);
+  opacity: 0.05;
+  z-index: 0;
 }
 
 

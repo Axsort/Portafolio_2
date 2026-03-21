@@ -31,7 +31,7 @@ const pasos = [
   {
     titulo: 'Desarrollador Java Full Stack Junior',
     descripcion: 'Construyo aplicaciones web responsivas con HTML, CSS, JavaScript, Java y DBases.',
-    detalle: 'Haz click en este banner para ver cómo está construido este sitio.',
+    detalle: '***Haz click en este banner para ver cómo está construido este sitio.***',
     etiqueta: ''
   },
   {
@@ -125,3 +125,30 @@ document.getElementById('contact-form').addEventListener('submit', function(even
       document.getElementById('status').innerHTML = '<div class="alert alert-danger">Error: ' + error.text + '</div>';
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.tarjeta-personalizada');
+
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      card.style.transform =
+        'translateY(-8px) rotateX(3deg) rotateY(-3deg)';
+      card.style.boxShadow =
+        '0 18px 45px rgba(0, 0, 0, 0.65), 0 0 30px rgba(124, 58, 237, 0.55)';
+      card.style.borderColor = 'rgba(129, 140, 248, 0.9)';
+      card.style.background =
+        'radial-gradient(circle at top left, #312e81, #020617)';
+      card.querySelector('.card-title')?.classList.add('titulo-activo');
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'none';
+      card.style.boxShadow = 'none';
+      card.style.borderColor = 'rgba(255, 255, 255, 0.06)';
+      card.style.background =
+        'radial-gradient(circle at top left, #1f2933, #0b0c10)';
+      card.querySelector('.card-title')?.classList.remove('titulo-activo');
+    });
+  });
+});
+

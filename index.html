@@ -51,12 +51,10 @@
     <!-- Hero -->
     <section id="inicio" class="hero text-center" id="heroInteractivo">
   <div class="container hero-texto" id="heroContenido">
-    <h1 id="heroTitulo">Desarrollador Java Full Stack Junior</h1>
+    <h1 id="heroTitulo"></h1>
     <p id="heroDescripcion">
-      Construyo aplicaciones web responsivas con Java, JavaScript y SQL.
     </p>
     <p id="heroDetalle" class="hero-detalle">
-      Haz click aquí para ver cómo está construido este sitio.
     </p>
     <p id="heroPaso" class="hero-paso"></p>
   </div>
@@ -64,7 +62,8 @@
 
     <!-- Sobre mí -->
     <section id="sobre-mi" class="section-padding bg-light">
-      <div class="container">
+      <div class="container sobreMi-container
+      ">
         <h2 class="text-center mb-5 animate__animated animate__flipInX sobreMi">Sobre mí</h2>
         <div class="row align-items-center">
           <div class="col-md-4 text-center">
@@ -88,16 +87,18 @@
               prácticas de código.
             </p>
             <p>
-              <img
+
+              <a href="https://github.com/Axsort"><img
                 src="./media/logo_github.png"
                 alt="Logo GitHub"
-                class="logo" />
+                class="logo"
+                  /></a>
               GitHub:
               <a class="links" href="https://github.com/Axsort" target="_blank">Axsort</a> |
-              <img
+              <a href="https://linkedin.com/in/GabrielCastro01"><img
                 src="./media/linkedin_logo.png"
                 alt="Logo linkedin"
-                class="logo" />
+                class="logo" /></a>
               LinkedIn:
               <a class="links" href="https://linkedin.com/in/GabrielCastro01" target="_blank"
                 >Gabriel Adrian Castro Pérez</a
@@ -242,52 +243,54 @@
 
     <!-- Contacto -->
     <section id="contacto" class="section-padding bg-dark text-white">
-      <div class="container">
-        <h2 class="text-center mb-5">Contacto</h2>
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <form id="contact-form">
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label for="Nombre" class="form-label">Nombre:</label>
-                  <input
-                    id="Nombre"
-                    name="Nombre"
-                    type="text"
-                    class="form-control"
-                    placeholder="Tu nombre"
-                    required />
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label for="Email" class="form-label">Email:</label>
-                  <input
-                    id="Email"
-                    name="Email"
-                    type="email"
-                    class="form-control"
-                    placeholder="correo@ejemplo.com"
-                    required />
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="Mensaje" class="form-label">Mensaje:</label>
-                <textarea
-                  id="Mensaje"
-                  name="Mensaje"
-                  class="form-control"
-                  rows="5"
-                  placeholder="Dime, ¿en qué puedo ayudarte?"
-                  required></textarea>
-              </div>
-              <div id="status"></div>
-              <button type="submit" class="btn btn-primary btn-lg">
-                Enviar
-              </button>
-            </form>
+  <div class="container">
+    <h2 class="text-center mb-5">Hablemos de tu proyecto</h2>
+    <p class="text-center mb-5 text-muted">¿Tienes un proyecto en mente, necesitas un portafolio, o quieres que te ayude a desarrollar alguna idea? Escríbeme y en breve te respondo.</p>
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <form id="contact-form">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="Nombre" class="form-label fw-semibold">Tu nombre:</label>
+              <input
+                id="Nombre"
+                name="Nombre"
+                type="text"
+                class="form-control"
+                placeholder="Ejemplo: Adrián"
+                required />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="Email" class="form-label fw-semibold">Correo electrónico:</label>
+              <input
+                id="Email"
+                name="Email"
+                type="email"
+                class="form-control"
+                placeholder="tu@correo.com"
+                required />
+            </div>
           </div>
-        </div>
+          <div class="mb-3">
+            <label for="Mensaje" class="form-label fw-semibold">Mensaje:</label>
+            <textarea
+              id="Mensaje"
+              name="Mensaje"
+              class="form-control"
+              rows="5"
+              placeholder="Cuéntame un poco sobre tu proyecto, idea o necesidad (web, app, portafolio, etc.) y con gusto te ayudo a planearlo."
+              required></textarea>
+          </div>
+          <div id="status"></div>
+          <button type="submit" class="btn btn-primary btn-lg w-100">
+            Enviar mensaje
+          </button>
+        </form>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
+
 
     <footer class="text-center py-3">
       <p class="mb-0">
