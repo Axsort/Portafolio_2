@@ -90,6 +90,8 @@ document.getElementById("year").textContent = new Date().getFullYear();
 
 // Toggle Dark / Light mode
 const themeToggleBtn = document.getElementById("theme-toggle");
+const logoGitHub = document.getElementById("logo-github");
+const logoLinkedIn = document.getElementById("logo-linkedin");
 
 if (themeToggleBtn) {
   themeToggleBtn.addEventListener("click", () => {
@@ -98,18 +100,22 @@ if (themeToggleBtn) {
     const isDark = document.body.classList.contains("dark-mode");
 
     if (isDark) {
-      // Modo oscuro activo
       themeToggleBtn.classList.remove("btn-dark");
       themeToggleBtn.classList.add("btn-light");
+      logoGitHub.src = "./media/logo_github-copia.png";
+      logoLinkedIn.src = "./media/linkedin_logo-copia.png";
       themeToggleBtn.textContent = "☀️ Light mode";
     } else {
-      // Modo claro (original)
       themeToggleBtn.classList.remove("btn-light");
       themeToggleBtn.classList.add("btn-dark");
+      logoGitHub.src = "./media/logo_github.png";
+      logoLinkedIn.src = "./media/linkedin_logo.png";
       themeToggleBtn.textContent = "🌙 Dark mode";
     }
   });
 }
+
+
 
 // Inicializar EmailJS con tu clave pública
 emailjs.init('ZBE-Geyt5dY4D8tk_');
@@ -126,29 +132,4 @@ document.getElementById('contact-form').addEventListener('submit', function(even
     });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const cards = document.querySelectorAll('.tarjeta-personalizada');
-
-  cards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      card.style.transform =
-        'translateY(-8px) rotateX(3deg) rotateY(-3deg)';
-      card.style.boxShadow =
-        '0 18px 45px rgba(0, 0, 0, 0.65), 0 0 30px rgba(124, 58, 237, 0.55)';
-      card.style.borderColor = 'rgba(129, 140, 248, 0.9)';
-      card.style.background =
-        'radial-gradient(circle at top left, #312e81, #020617)';
-      card.querySelector('.card-title')?.classList.add('titulo-activo');
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'none';
-      card.style.boxShadow = 'none';
-      card.style.borderColor = 'rgba(255, 255, 255, 0.06)';
-      card.style.background =
-        'radial-gradient(circle at top left, #1f2933, #0b0c10)';
-      card.querySelector('.card-title')?.classList.remove('titulo-activo');
-    });
-  });
-});
 

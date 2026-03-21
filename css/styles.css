@@ -113,13 +113,24 @@ body {
   font-size: 25px;
 }
 
-.logo {
+.logoLinkedIn {
   width: 30px;
   height: 30px;
   vertical-align: -4px;
 }
 
-.logo:hover {
+.logoLinkedIn:hover {
+  transform: scale(1.3) rotate(20deg);
+  transition: transform 0.3s ease;
+}
+
+.logoGitHub {
+  width: 30px;
+  height: 30px;
+  vertical-align: -4px;
+}
+
+.logoGitHub:hover {
   transform: scale(1.3) rotate(20deg);
   transition: transform 0.3s ease;
 }
