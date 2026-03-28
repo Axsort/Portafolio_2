@@ -19,7 +19,7 @@
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top mt-3 mx-auto">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top mt-3 mx-auto reveal-on-scroll">
       <div class="container justify-content-center">
         <a class="navbar-brand fw-bold" href="#inicio">Gabriel Castro</a>
         <button id="theme-toggle" class="btn btn-sm btn-dark">
@@ -52,7 +52,7 @@
     </nav>
 
     <!-- Hero -->
-    <section id="inicio" class="hero text-center" id="heroInteractivo">
+    <section id="inicio" class="hero text-center reveal-on-scroll" id="heroInteractivo">
   <div class="container hero-texto" id="heroContenido">
     <h1 id="heroTitulo"></h1>
     <p id="heroDescripcion">
@@ -64,7 +64,7 @@
 </section>
 
     <!-- Sobre mí -->
-    <section id="sobre-mi" class="section-padding bg-light">
+    <section id="sobre-mi" class="section-padding bg-light reveal-on-scroll">
       <div class="container sobreMi-container
       ">
         <h2 class="text-center mb-5 animate__animated animate__flipInX sobreMi">Sobre mí</h2>
@@ -115,7 +115,7 @@
     </section>
 
     <!-- Aptitudes -->
-    <section id="habilidades" class="section-padding">
+    <section id="habilidades" class="section-padding reveal-on-scroll">
       <div class="container">
         <h2 id="aptitudes" class="text-center mb-5">Aptitudes</h2>
 
@@ -123,11 +123,13 @@
           <!-- Frontend -->
           <div class="col-md-3">
             <div class="apt-card apt-frontend">
+              <span class="apt-glow"></span>
               <h5 class="apt-title">Frontend</h5>
               <ul class="list-unstyled apt-list">
-                <li>HTML5, CSS3</li>
-                <li>JavaScript</li>
-                <li>Bootstrap 5</li>
+                <li>HTML5 <img class="logosTech" src="./media/html.png" alt="logoHTML"></li>
+                <li>CSS3 <img class="logosTech" src="./media/css-3.png" alt="logoCSS"></li>
+                <li>JavaScript <img class="logosTech" src="./media/logotipo-de-java-script.png" alt="logoJS"></li>
+                <li>Bootstrap 5 <img class="logosTech" src="./media/bootstrap-logo-rounded-free-png.png" alt="logoBootStrap"></li>
               </ul>
             </div>
           </div>
@@ -135,12 +137,15 @@
           <!-- Backend -->
           <div class="col-md-3">
             <div class="apt-card apt-backend">
+              <span class="apt-glow"></span>
               <i class="apt-icon bi bi-server"></i>
               <h5 class="apt-title">Backend</h5>
               <ul class="list-unstyled apt-list">
-                <li>Java</li>
-                <li>Python</li>
-                <li>APIs REST</li>
+                <li>Java <img class="logosTech" src="./media/java.png" alt="logoJava"></li>
+                <li>Spring Boot <img class="logosTech" src="./media/BotonSpringBoot.jpg" alt="logoSpringBoot"></li>
+                <li>Python <img class="logosTech" src="./media/piton.png" alt="logoPython"></li>
+                <li>APIs REST <img class="logosTech" src="./media/nube.png" alt="logoAPI"></li>
+                <li>MySQL <img class="logosTech" src="./media/mysql.png" alt="logoMySQL"></li>
               </ul>
             </div>
           </div>
@@ -148,13 +153,14 @@
           <!-- Tools -->
           <div class="col-md-3">
             <div class="apt-card apt-tools">
+              <span class="apt-glow"></span>
               <i class="apt-icon bi bi-tools"></i>
               <h5 class="apt-title">Tools</h5>
               <ul class="list-unstyled apt-list">
-                <li>Git / GitHub</li>
-                <li>VS Code</li>
-                <li>Responsive Design</li>
-                <li>Artificial Intelligence</li>
+                <li>Git / GitHub <img class="logosTech" src="./media/logo_github.png" alt="logoGithub"></li>
+                <li>VS Code <img class="logosTech" src="./media/visual-basico.png" alt="logoVisual"></li>
+                <li>Responsive Design <img class="logosTech" src="./media/programacion.png" alt="logoRD"></li>
+                <li>Artificial Intelligence <img class="logosTech" src="./media/inteligencia-artificial.png" alt="logoIA"></li>
               </ul>
             </div>
           </div>
@@ -162,6 +168,7 @@
           <!-- Soft Skills -->
           <div class="col-md-3">
             <div class="apt-card apt-soft">
+              <span class="apt-glow"></span>
               <i class="apt-icon bi bi-people"></i>
               <h5 class="apt-title">Soft Skills</h5>
               <ul class="list-unstyled apt-list">
@@ -183,7 +190,7 @@
         <h2 class="text-center mb-5">Proyectos</h2>
         <div class="row">
           <!-- Aquí se van a insertar tarjetas de proyectos -->
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             <div class="card tarjeta-personalizada">
               <div class="card-body">
                 <h5 class="card-title">Landing Page - Pelusa Shop</h5>
@@ -203,7 +210,7 @@
             </div>
           </div>
 
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             <div class="card tarjeta-personalizada">
               <div class="card-body">
                 <h5 class="card-title">Mano a mano E-commerce</h5>
@@ -215,7 +222,7 @@
                   actualmente con HTML, CSS, Bootstrap y JavaScript. <br />
                 </p>
                 <a
-                  href="https://axsort.github.io/Mano-a-mano/"
+                  href="https://mano-a-mano-frontend.vercel.app/index.html"
                   class="btn btn-personalizado"
                   >¡Acompáñame a verlo!</a
                 >
@@ -223,7 +230,7 @@
             </div>
           </div>
 
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             <div id="agenda" class="card tarjeta-personalizada">
               <div class="card-body">
                 <h5 class="card-title">Sistema de Agenda Telefónica</h5>
@@ -242,12 +249,29 @@
               </div>
             </div>
           </div>
+
+          <div class="col-sm-3">
+            <div id="agenda" class="card tarjeta-personalizada">
+              <div class="card-body">
+                <h5 class="card-title">Portafolio moderno</h5>
+                <p class="card-text">
+                  Construí este portafolio con HTML, CSS y JavaScript, cuidando un diseño limpio, responsivo y fácil de leer en cualquier dispositivo.
+                  Lo considero una reestructuración de este mismo portafolio.
+                </p>
+                <a
+                  href="https://axsort.github.io/Neo-Portfolio/"
+                  class="btn btn-personalizado"
+                  >¡Acompáñame a verlo!</a
+                >
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Contacto -->
-    <section id="contacto" class="section-padding bg-dark text-white">
+    <section id="contacto" class="section-padding bg-dark text-white reveal-on-scroll">
   <div class="container">
     <h2 class="text-center mb-5">Hablemos de tu proyecto</h2>
     <p class="text-center mb-5 text-muted">¿Tienes un proyecto en mente, necesitas un portafolio, o quieres que te ayude a desarrollar alguna idea? Escríbeme y en breve te respondo.</p>
@@ -297,7 +321,7 @@
 </section>
 
 
-    <footer class="text-center py-3">
+    <footer class="text-center py-3 reveal-on-scroll">
       <p class="mb-0 footer">
         © <span id="year"></span> Gabriel Castro - Desarrollador Java Full Stack
         Junior

@@ -82,7 +82,59 @@ hero.addEventListener('click', () => {
   }, 250);
 });
 
+  const cards = document.querySelectorAll('.apt-card');
 
+  cards.forEach(card => {
+    const glow = card.querySelector('.apt-glow');
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      glow.style.left = `${x}px`;
+      glow.style.top  = `${y}px`;
+      glow.style.opacity = '1';
+
+      // opcional: tilt 3D
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -8;
+      const rotateY = ((x - centerX) / centerX) * 8;
+
+      card.style.transform = `
+        translateY(-6px)
+        scale(1.03)
+        rotateX(${rotateX}deg)
+        rotateY(${rotateY}deg)
+      `;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      if (glow) glow.style.opacity = '0';
+      card.style.transform = 'translateY(0) scale(1) rotateX(0) rotateY(0)';
+    });
+  });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const revealItems = document.querySelectorAll('.reveal-on-scroll');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      } else {
+        entry.target.classList.remove('is-visible');
+      }
+    });
+  }, {
+    threshold: 0.15,
+    root: null,
+    rootMargin: '0px 0px -5%'
+  });
+
+  revealItems.forEach(el => observer.observe(el));
+});
 
 
 // Año dinámico del footer
@@ -117,7 +169,7 @@ if (themeToggleBtn) {
 
 
 
-// Inicializar EmailJS con tu clave pública
+// EmailJS
 emailjs.init('ZBE-Geyt5dY4D8tk_');
 
 document.getElementById('contact-form').addEventListener('submit', function(event) {

@@ -379,6 +379,10 @@ body {
   font-size: 3rem;
 }
 
+/* ===========================
+   APTITUDES - ESTILO + ANIMACIÓN
+   =========================== */
+
 .apt-card {
   position: relative;
   padding: 2rem 1.5rem;
@@ -392,13 +396,60 @@ body {
   color: #0f172a;
   box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
   overflow: hidden;
+  transform: translateY(40px) scale(0.96);
+  opacity: 0;
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+    transform 0.45s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease,
+    background 0.35s ease;
+}
+
+.apt-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 220px;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(200, 6, 254, 0.45), transparent 25%);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s ease-out;
+}
+
+#habilidades .col-md-3:nth-child(1) .apt-card {
+  animation: cardEnter 0.7s ease-out 0.05s forwards;
+}
+#habilidades .col-md-3:nth-child(2) .apt-card {
+  animation: cardEnter 0.7s ease-out 0.15s forwards;
+}
+#habilidades .col-md-3:nth-child(3) .apt-card {
+  animation: cardEnter 0.7s ease-out 0.25s forwards;
+}
+#habilidades .col-md-3:nth-child(4) .apt-card {
+  animation: cardEnter 0.7s ease-out 0.35s forwards;
+}
+
+@keyframes cardEnter {
+  0% {
+    transform: translateY(40px) scale(0.9);
+    opacity: 0;
+    filter: blur(6px);
+  }
+  60% {
+    transform: translateY(-6px) scale(1.02);
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
 }
 
 .apt-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-6px) scale(1.02);
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16);
 }
 
@@ -406,11 +457,14 @@ body {
   font-weight: 600;
   font-size: 1.7rem;
   margin-bottom: 0.75rem;
+  transition: transform 0.3s ease;
 }
 
 .apt-list li {
   font-size: 1.2rem;
   line-height: 1.6;
+  position: relative;
+  transition: transform 0.25s ease, color 0.25s ease;
 }
 
 .apt-icon {
@@ -418,26 +472,51 @@ body {
   font-weight: 700;
   margin-bottom: 0.75rem;
   opacity: 0.9;
+  transition: transform 0.3s ease;
+}
+
+.apt-card:hover .apt-title,
+.apt-card:hover .apt-icon {
+  transform: translateY(-2px);
+}
+
+.apt-list li:hover {
+  transform: translateX(4px);
+  color: #f9fafb;
+}
+
+.apt-list li .logosTech {
+  width: 10%;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.apt-list li:hover .logosTech {
+  transform: translateY(-2px) scale(1.05);
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
 }
 
 .apt-frontend {
   background: linear-gradient(135deg, #ffcc33, #ff9f1c);
   color: #111827;
+  box-shadow: 0 0 18px rgba(255, 159, 28, 0.35);
 }
 
 .apt-backend {
   background: linear-gradient(135deg, #0f172a, #1f2937);
   color: #f9fafb;
+  box-shadow: 0 0 18px rgba(15, 23, 42, 0.6);
 }
 
 .apt-tools {
   background: linear-gradient(135deg, #0b1120, #1d4ed8);
   color: #e5e7eb;
+  box-shadow: 0 0 18px rgba(37, 99, 235, 0.5);
 }
 
 .apt-soft {
   background: #c4020249;
   color: #f7f8fc;
+  box-shadow: 0 0 18px rgba(196, 2, 2, 0.45);
 }
 
 .row.g-4 > [class*="col-"] {
@@ -446,6 +525,53 @@ body {
 
 .row.g-4 > [class*="col-"] > .apt-card {
   width: 100%;
+}
+
+.apt-card::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -60%;
+  width: 50%;
+  height: 180%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.12) 45%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.12) 55%,
+    transparent 100%
+  );
+  transform: translateX(-120%) rotate(12deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.apt-card:hover::before {
+  opacity: 1;
+  animation: sweepGlow 0.9s ease-out forwards;
+}
+
+@keyframes sweepGlow {
+  0% {
+    transform: translateX(-120%) rotate(12deg);
+  }
+  100% {
+    transform: translateX(220%) rotate(12deg);
+  }
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /*=======================
@@ -728,6 +854,11 @@ body.dark-mode #contacto::before {
   .apt-card {
     height: 0px;
   }
+  .logosTech {
+  width: 6%;
+  background-color: white;
+  border-radius: 25%;
+}
   .card {
     margin: 10px;
   }
