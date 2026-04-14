@@ -81,7 +81,7 @@ text-shadow:
 }
 
 .banner-img {
-    width: 100%;
+    width: 97.5%;
 }
 
 .description {
@@ -115,7 +115,7 @@ text-shadow:
     content: "";
     position: absolute;
     left: 0;
-    bottom: -8.5rem;
+    bottom: 0rem;
     width: 100%;
     height: 1px;
     background: linear-gradient(90deg, blueviolet, white, rgb(3, 249, 3));
@@ -423,3 +423,31 @@ text-shadow:
     color: blueviolet;
 }
 
+/* ===== Reveal on scroll ===== */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Navbar con fondo al hacer scroll */
+.navbar-head.navbar-scrolled .navbar {
+  background-color: rgba(0, 0, 0, 0.92);
+  box-shadow: 0 4px 22px rgba(148, 92, 216, 0.5);
+}
+
+/* Link activo en el navbar */
+.navbar-nav .nav-link.active {
+  color: #00ff00;
+  text-shadow:
+    0 0 6px rgba(0, 255, 0, 0.9),
+    0 0 10px rgba(148, 92, 216, 0.9);
+}
