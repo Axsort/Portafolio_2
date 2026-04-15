@@ -195,6 +195,29 @@ function initStackCardsHover() {
   });
 }
 
+/* TypeWriter */
+document.addEventListener("DOMContentLoaded", () => {
+  const description = document.querySelector(".description");
+
+  if (!description) return;
+
+  const textToType = description.textContent.trim();
+  description.textContent = "";
+
+  let index = 0;
+  const speed = 15;
+
+  function typeWriter() {
+    if (index < textToType.length) {
+      description.textContent += textToType.charAt(index);
+      index++;
+      setTimeout(typeWriter, speed);
+    }
+  }
+
+  typeWriter();
+});
+
 // =============================
 //  Inicialización
 // =============================

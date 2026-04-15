@@ -84,10 +84,50 @@ text-shadow:
     width: 100%;
 }
 
+.user {
+  color: #00FF00;
+}
+
+.mingw64 {
+  color: blueviolet;
+}
+
+.path {
+  color: yellow;
+}
+
+.main {
+  color: #00aa93;
+}
+
 .description {
     font-size: 1.5rem;
-    color: white;
+    color: rgb(154, 152, 152);
     margin: 2rem 2rem 0 2rem;
+    white-space: pre-wrap;
+    text-shadow: 0 0 4px rgba(0, 255, 102, 0.6);
+    line-height: 1.5;
+}
+
+.description::after {
+  content: "|";
+  display: inline-block;
+  margin-left: 2px;
+  color: rgb(255, 255, 255);
+  animation: blink-caret 0.8s step-end infinite;
+}
+
+@keyframes blink-caret {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+.description.typing {
+  animation: blink-caret 0.8s step-end infinite;
 }
 
 .description:hover {
