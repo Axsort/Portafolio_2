@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" id="html-root">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -43,16 +43,31 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-              <li class="nav-item"><a class="nav-link" href="#sobre-mi">Sobre mí</a></li>
-              <li class="nav-item"><a class="nav-link" href="#stack">Stack</a></li>
-              <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
-              <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+              <li class="nav-item">
+                <a class="nav-link" href="#sobre-mi" data-i18n="navAbout">Sobre mí</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#stack" data-i18n="navStack">Stack</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#proyectos" data-i18n="navProjects">Proyectos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contacto" data-i18n="navContact">Contacto</a>
+              </li>
             </ul>
-            <!-- CV DOWNLOAD BUTTON NAVBAR -->
-            <a href="media/GabrielAdrianCastroPerezCV27_04_2026.pdf" download="GabrielAdrianCastroPerezCV27_04_2026.pdf"
+
+            <!-- LANGUAGE TOGGLE -->
+            <button class="btn-lang-toggle" id="lang-toggle" aria-label="Switch language">
+              <span class="lang-flag" id="lang-flag">🇺🇸</span>
+              <span class="lang-label" id="lang-label">EN</span>
+            </button>
+
+            <!-- CV DOWNLOAD -->
+            <a href="media/CV_Gabriel_Castro.pdf" download="CV_Gabriel_Castro.pdf"
                class="btn-cv-download" aria-label="Descargar CV">
               <span class="btn-cv-arrow">⬇</span>
-              <span class="btn-cv-text">Descargar CV</span>
+              <span class="btn-cv-text" data-i18n="btnCV">Descargar CV</span>
               <span class="btn-cv-shine"></span>
             </a>
           </div>
@@ -69,7 +84,6 @@
         <!-- ====== TERMINAL WINDOW ====== -->
         <div class="terminal-window">
 
-          <!-- Barra de título -->
           <div class="terminal-titlebar">
             <div class="terminal-dots">
               <span class="dot dot-red"   title="Cerrar"></span>
@@ -80,10 +94,9 @@
             <div class="terminal-titlebar-end"></div>
           </div>
 
-          <!-- Cuerpo del terminal -->
           <div class="terminal-body" id="terminal-body">
 
-            <!-- BLOQUE 1: ls -la (pre-escrito) -->
+            <!-- BLOQUE 1: ls -la -->
             <div class="terminal-line" id="line-ls-cmd">
               <span class="t-prompt">
                 <span class="user">gabriel@Axsort-Lap</span><span class="t-sep">:</span><span class="path">~/Desktop/Portafolio</span> <span class="main">(main)</span><span class="t-dollar"> $</span>
@@ -91,13 +104,13 @@
               <span class="t-cmd" id="cmd-ls"></span>
             </div>
             <div class="terminal-output" id="output-ls" style="display:none;">
-              <span class="t-dir">drwxr-xr-x</span>  <span class="t-dim">skills/</span><br>
-              <span class="t-dir">drwxr-xr-x</span>  <span class="t-dim">proyectos/</span><br>
-              <span class="t-file">-rw-r--r--</span>  <span class="t-dim">README.md</span><br>
-              <span class="t-exec">-rwxr-xr-x</span>  <span class="t-accent">CV_Gabriel_Castro.pdf</span><br>
+              <span class="t-dir">drwxr-xr-x</span>&nbsp;&nbsp;<span class="t-dim">skills/</span><br>
+              <span class="t-dir">drwxr-xr-x</span>&nbsp;&nbsp;<span class="t-dim" data-i18n="lsProjects">proyectos/</span><br>
+              <span class="t-file">-rw-r--r--</span>&nbsp;&nbsp;<span class="t-dim">README.md</span><br>
+              <span class="t-exec">-rwxr-xr-x</span>&nbsp;&nbsp;<span class="t-accent">CV_Gabriel_Castro.pdf</span><br>
             </div>
 
-            <!-- BLOQUE 2: git status (pre-escrito) -->
+            <!-- BLOQUE 2: git status -->
             <div class="terminal-line" id="line-git-cmd" style="display:none;">
               <span class="t-prompt">
                 <span class="user">gabriel@Axsort-Lap</span><span class="t-sep">:</span><span class="path">~/Desktop/Portafolio</span> <span class="main">(main)</span><span class="t-dollar"> $</span>
@@ -117,10 +130,10 @@
               <span class="t-cmd" id="cmd-cat"></span>
             </div>
 
-            <!-- El texto que se tipea -->
+            <!-- Texto typewriter -->
             <p class="description" id="typewriter-target" style="display:none;"></p>
 
-            <!-- Prompt final con cursor -->
+            <!-- Prompt final -->
             <div class="terminal-line" id="final-prompt" style="display:none;">
               <span class="t-prompt">
                 <span class="user">gabriel@Axsort-Lap</span><span class="t-sep">:</span><span class="path">~/Desktop/Portafolio</span> <span class="main">(main)</span><span class="t-dollar"> $</span>
@@ -128,7 +141,7 @@
               <span class="terminal-cursor-block" aria-hidden="true">█</span>
             </div>
 
-          </div><!-- /terminal-body -->
+          </div>
         </div><!-- /terminal-window -->
 
         <!-- Redes sociales + CV hero -->
@@ -141,7 +154,6 @@
           <a class="enlace-linkedin" href="https://www.linkedin.com/in/gabrielcastro01/" target="_blank" rel="noopener">
             <span>LinkedIn: Gabriel Adrian Castro Perez</span>
           </a>
-          <!-- CV hero inline -->
           <a href="media/CV_Gabriel_Castro.pdf" download="CV_Gabriel_Castro.pdf"
              class="btn-cv-hero" aria-label="Descargar CV PDF">
             <span>⬇</span>&nbsp;CV.pdf
@@ -151,12 +163,13 @@
 
       <!--=========================STACK======================================-->
       <section id="stack" class="stack reveal-on-scroll">
-        <h5 class="title-stack"><strong>Stack</strong></h5>
+        <h5 class="title-stack"><strong data-i18n="stackTitle">Stack</strong></h5>
         <article class="cards">
+
           <div class="card">
             <img src="media/Tecno.png" alt="Tecnologías" class="card-img" />
             <div class="card-body">
-              <h6 class="card-title">Habilidades Técnicas</h6>
+              <h6 class="card-title" data-i18n="cardTechTitle">Habilidades Técnicas</h6>
               <div class="card-text">
                 <ul>
                   <li>HTML5</li>
@@ -171,10 +184,10 @@
                   <li>MySQL</li>
                   <li>SQL</li>
                   <li>Git/GitHub</li>
-                  <li>Responsive Design</li>
+                  <li data-i18n="liResponsive">Responsive Design</li>
                 </ul>
                 <footer class="card-footer">
-                  <a href="#" class="card-link">Leer más</a>
+                  <a href="#" class="card-link" data-i18n="readMore">Leer más</a>
                 </footer>
               </div>
             </div>
@@ -183,28 +196,30 @@
           <div class="card">
             <img src="media/soft.png" alt="Habilidades blandas" class="card-img" />
             <div class="card-body">
-              <h6 class="card-title">Habilidades Blandas</h6>
+              <h6 class="card-title" data-i18n="cardSoftTitle">Habilidades Blandas</h6>
               <div class="card-text">
                 <ul class="ul-soft">
-                  <li>Comunicación clara y efectiva</li>
-                  <li>Trabajo colaborativo y en equipo</li>
-                  <li>Resolución de problemas</li>
-                  <li>Adaptabilidad y flexibilidad ante cambios</li>
-                  <li>Confiabilidad y compromiso profesional</li>
-                  <li>Disposición y actitud proactiva de ayuda</li>
+                  <li data-i18n="soft1">Comunicación clara y efectiva</li>
+                  <li data-i18n="soft2">Trabajo colaborativo y en equipo</li>
+                  <li data-i18n="soft3">Resolución de problemas</li>
+                  <li data-i18n="soft4">Adaptabilidad y flexibilidad ante cambios</li>
+                  <li data-i18n="soft5">Confiabilidad y compromiso profesional</li>
+                  <li data-i18n="soft6">Disposición y actitud proactiva de ayuda</li>
+                  <li data-i18n="soft7">Inglés B1 (lectura técnica de documentación avanzado)</li>
                 </ul>
                 <footer class="card-footer">
-                  <a href="#" class="card-link">Leer más</a>
+                  <a href="#" class="card-link" data-i18n="readMore">Leer más</a>
                 </footer>
               </div>
             </div>
           </div>
+
         </article>
       </section>
 
       <!--=========================PROYECTOS======================================-->
       <section id="proyectos" class="proyectos reveal-on-scroll">
-        <h5 class="title-proyects"><strong>Proyectos</strong></h5>
+        <h5 class="title-proyects"><strong data-i18n="projectsTitle">Proyectos</strong></h5>
         <div class="carousel-container">
           <div id="carouselExampleDark" class="carousel carousel-dark slide">
             <div class="carousel-indicators">
@@ -215,41 +230,57 @@
               <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4" aria-label="Slide 5"></button>
             </div>
             <div class="carousel-inner">
+
               <div class="carousel-item active" data-bs-interval="10000">
-                <a href="https://mano-a-mano-frontend.vercel.app/index.html" target="_blank"><img src="media/ManoAMano.png" class="d-block w-100 img-carousel" alt="Mano A Mano" /></a>
+                <a href="https://mano-a-mano-frontend.vercel.app/index.html" target="_blank">
+                  <img src="media/ManoAMano.png" class="d-block w-100 img-carousel" alt="Mano A Mano" />
+                </a>
                 <div class="carousel-caption d-none d-md-block">
-                  <h5>E-Commerce Mano A Mano</h5>
-                  <p>Proyecto integrador colaborativo en Generation México. HTML, CSS, Bootstrap y JavaScript con catálogo de productos y carrito funcional.</p>
+                  <h5 data-i18n="p1Title">E-Commerce Mano A Mano</h5>
+                  <p data-i18n="p1Desc">Proyecto integrador colaborativo en Generation México. HTML, CSS, Bootstrap y JavaScript con catálogo de productos y carrito funcional.</p>
                 </div>
               </div>
+
               <div class="carousel-item" data-bs-interval="2000">
-                <a href="https://hackathon-1-generation-mexico.vercel.app/" target="_blank"><img src="media/Landing.png" class="d-block w-100 img-carousel" alt="Landing Page" /></a>
+                <a href="https://hackathon-1-generation-mexico.vercel.app/" target="_blank">
+                  <img src="media/Landing.png" class="d-block w-100 img-carousel" alt="Landing Page" />
+                </a>
                 <div class="carousel-caption d-none d-md-block">
-                  <h5>Landing Page SportX</h5>
-                  <p>Landing page colaborativa entregada en un Hackathon de 7 horas. HTML, CSS, Bootstrap y JavaScript.</p>
+                  <h5 data-i18n="p2Title">Landing Page SportX</h5>
+                  <p data-i18n="p2Desc">Landing page colaborativa entregada en un Hackathon de 7 horas. HTML, CSS, Bootstrap y JavaScript.</p>
                 </div>
               </div>
+
               <div class="carousel-item">
-                <a href="https://github.com/Axsort/Hackathon_2_Generation_Mexico_agenda_Java" target="_blank"><img src="media/agendaJava.png" class="d-block w-100 img-carousel" alt="Agenda Java" /></a>
+                <a href="https://github.com/Axsort/Hackathon_2_Generation_Mexico_agenda_Java" target="_blank">
+                  <img src="media/agendaJava.png" class="d-block w-100 img-carousel" alt="Agenda Java" />
+                </a>
                 <div class="carousel-caption d-none d-md-block">
-                  <h5>Sistema Agenda Telefónica — Java</h5>
-                  <p>Aplicación 100% Java con gestión de contactos, detección de duplicados y arquitectura orientada a objetos.</p>
+                  <h5 data-i18n="p3Title">Sistema Agenda Telefónica — Java</h5>
+                  <p data-i18n="p3Desc">Aplicación 100% Java con gestión de contactos, detección de duplicados y arquitectura orientada a objetos.</p>
                 </div>
               </div>
+
               <div class="carousel-item">
-                <a href="https://github.com/Axsort/API-JAVA-Gradle-Spring-Boot" target="_blank"><img src="media/SpringBoot_App.png" class="d-block w-100 img-carousel" alt="API REST Java" /></a>
+                <a href="https://github.com/Axsort/API-JAVA-Gradle-Spring-Boot" target="_blank">
+                  <img src="media/SpringBoot_App.png" class="d-block w-100 img-carousel" alt="API REST Java" />
+                </a>
                 <div class="carousel-caption d-none d-md-block">
-                  <h5>API REST — Java 17 + Spring Boot + Gradle</h5>
-                  <p>API RESTful completa con arquitectura MVC en capas (Controller, Service, Repository). Java 17 y Gradle como sistema de build moderno.</p>
+                  <h5 data-i18n="p4Title">API REST — Java 17 + Spring Boot + Gradle</h5>
+                  <p data-i18n="p4Desc">API RESTful completa con arquitectura MVC en capas (Controller, Service, Repository). Java 17 y Gradle como sistema de build moderno.</p>
                 </div>
               </div>
+
               <div class="carousel-item">
-                <a href="https://axsort.github.io/TicTacToe-React/" target="_blank"><img src="media/tictactoe.png" class="d-block w-100 img-carousel" alt="TicTacToe React" /></a>
+                <a href="https://axsort.github.io/TicTacToe-React/" target="_blank">
+                  <img src="media/tictactoe.png" class="d-block w-100 img-carousel" alt="TicTacToe React" />
+                </a>
                 <div class="carousel-caption d-none d-md-block">
-                  <h5>ReactApp — Tic-Tac-Toe</h5>
-                  <p>Juego clásico del gato con React, gestión de estado con hooks y lógica de victoria.</p>
+                  <h5 data-i18n="p5Title">ReactApp — Tic-Tac-Toe</h5>
+                  <p data-i18n="p5Desc">Juego clásico del gato con React, gestión de estado con hooks y lógica de victoria.</p>
                 </div>
               </div>
+
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -266,29 +297,37 @@
       <!--=========================CONTACTO======================================-->
       <section id="contacto" class="section-padding bg-dark text-white reveal-on-scroll">
         <div class="container">
-          <h2 class="text-center mb-5">Hablemos de tu proyecto</h2>
-          <p class="text-center mb-5 text-muted">¿Tienes un proyecto en mente, necesitas un portafolio, o quieres que te ayude a desarrollar alguna idea? Escríbeme y en breve te respondo.</p>
+          <h2 class="text-center mb-5" data-i18n="contactTitle">Hablemos de tu proyecto</h2>
+          <p class="text-center mb-5 text-muted" data-i18n="contactSubtitle">
+            ¿Tienes un proyecto en mente, necesitas un portafolio, o quieres que te ayude a desarrollar alguna idea? Escríbeme y en breve te respondo.
+          </p>
           <div class="row">
             <div class="col-lg-12 mx-1">
               <form id="contact-form">
                 <div class="row">
                   <div class="col-md-6 mb-3">
-                    <label for="Nombre" class="form-label fw-semibold">Tu nombre:</label>
-                    <input id="Nombre" name="Nombre" type="text" class="form-control" placeholder="Ejemplo: Adrián Castro" required />
+                    <label for="Nombre" class="form-label fw-semibold" data-i18n="labelName">Tu nombre:</label>
+                    <input id="Nombre" name="Nombre" type="text" class="form-control"
+                           data-i18n-placeholder="placeholderName"
+                           placeholder="Ejemplo: Adrián Castro" required />
                   </div>
                   <div class="col-md-6 mb-3">
-                    <label for="Email" class="form-label fw-semibold">Correo electrónico:</label>
-                    <input id="Email" name="Email" type="email" class="form-control" placeholder="tu@correo.com" required />
+                    <label for="Email" class="form-label fw-semibold" data-i18n="labelEmail">Correo electrónico:</label>
+                    <input id="Email" name="Email" type="email" class="form-control"
+                           placeholder="tu@correo.com" required />
                   </div>
                 </div>
                 <div class="mb-3">
-                  <label for="Mensaje" class="form-label fw-semibold">Mensaje:</label>
+                  <label for="Mensaje" class="form-label fw-semibold" data-i18n="labelMessage">Mensaje:</label>
                   <textarea id="Mensaje" name="Mensaje" class="form-control" rows="5"
-                    placeholder="Cuéntame un poco sobre tu proyecto, idea o necesidad (web, app, portafolio, etc.) y con gusto te ayudo a planearlo. ¡Recuerda que si lo puedes imaginar, lo puedo crear!"
+                    data-i18n-placeholder="placeholderMessage"
+                    placeholder="Cuéntame un poco sobre tu proyecto, idea o necesidad (web, app, portafolio, etc.) y con gusto te ayudo a planearlo. ¡Recuerda, si lo puedes imaginar, lo podemos crear!"
                     required></textarea>
                 </div>
                 <div id="status"></div>
-                <button type="submit" class="btn btn-primary btn-lg w-100">Enviar mensaje</button>
+                <button type="submit" class="btn btn-primary btn-lg w-100" data-i18n="btnSend">
+                  Enviar mensaje
+                </button>
               </form>
             </div>
           </div>
@@ -298,7 +337,8 @@
       <!--=========================FOOTER======================================-->
       <footer class="footer reveal-on-scroll">
         <p>
-          <strong>2026 | </strong>Gabriel Castro — Desarrollador Full Stack |
+          <strong>2026 | </strong>Gabriel Castro —
+          <span data-i18n="footerRole">Desarrollador Full Stack</span> |
           <strong>gabriel.castro1035@gmail.com</strong>
         </p>
       </footer>
