@@ -58,8 +58,8 @@ const TRANSLATIONS = {
     p3Desc:          'Aplicación 100% Java con gestión de contactos, detección de duplicados y arquitectura orientada a objetos.',
     p4Title:         'API REST — Java 17 + Spring Boot + Gradle',
     p4Desc:          'API RESTful completa con arquitectura MVC en capas (Controller, Service, Repository). Java 17 y Gradle como sistema de build moderno.',
-    p5Title:         'ReactApp — Tic-Tac-Toe',
-    p5Desc:          'Juego clásico del gato con React, gestión de estado con hooks y lógica de victoria.',
+    p5Title:         'Sistema de inventarios',
+    p5Desc:          'Sistema de Gestión de Inventario Aplicación fullstack para control de inventario empresarial. Gestión de productos, categorías, proveedores y movimientos de stock, con autenticación JWT y roles de usuario. Backend: Spring Boot ·Spring Security · JPA · JWT · Maven Frontend: React ·TypeScript · MUI · Zustand · React Hook Form',
 
     // Contacto
     contactTitle:    'Hablemos de tu proyecto',
@@ -134,8 +134,8 @@ const TRANSLATIONS = {
     p3Desc:          '100% Java application for contact management, duplicate detection, and object-oriented architecture.',
     p4Title:         'REST API — Java 17 + Spring Boot + Gradle',
     p4Desc:          'Full RESTful API with layered MVC architecture (Controller, Service, Repository). Java 17 and Gradle as a modern build system.',
-    p5Title:         'ReactApp — Tic-Tac-Toe',
-    p5Desc:          'Classic Tic-Tac-Toe game built with React, state management using hooks, and win detection logic.',
+    p5Title:         'Inventory Management System',
+    p5Desc:          'Inventory Management System Full-stack application for enterprise inventory control. Manage products, categories, suppliers and stock movements, with JWT authentication and user roles. Backend: Spring Boot · Spring Security · JPA · JWT · Maven Frontend: React · TypeScript · MUI · Zustand · React Hook Form',
 
     // Contacto
     contactTitle:    "Let's talk about your project",
