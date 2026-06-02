@@ -60,6 +60,8 @@ const TRANSLATIONS = {
     p4Desc:          'API RESTful completa con arquitectura MVC en capas (Controller, Service, Repository). Java 17 y Gradle como sistema de build moderno.',
     p5Title:         'Sistema de inventarios',
     p5Desc:          'Sistema de Gestión de Inventario Aplicación fullstack para control de inventario empresarial. Gestión de productos, categorías, proveedores y movimientos de stock, con autenticación JWT y roles de usuario. Backend: Spring Boot ·Spring Security · JPA · JWT · Maven Frontend: React ·TypeScript · MUI · Zustand · React Hook Form',
+    p6Title:         'Panel de automatización de tareas',
+    p6Desc:          'AutoPanel es un panel web de automatización de tareas orientado a PYMEs. Permite a equipos empresariales definir reglas del tipo "si pasa X, entonces haz Y", ejecutar flujos internos de trabajo y monitorear la actividad del equipo desde un panel centralizado, con acceso restringido y auditoría de seguridad.',
 
     // Contacto
     contactTitle:    'Hablemos de tu proyecto',
@@ -136,6 +138,8 @@ const TRANSLATIONS = {
     p4Desc:          'Full RESTful API with layered MVC architecture (Controller, Service, Repository). Java 17 and Gradle as a modern build system.',
     p5Title:         'Inventory Management System',
     p5Desc:          'Inventory Management System Full-stack application for enterprise inventory control. Manage products, categories, suppliers and stock movements, with JWT authentication and user roles. Backend: Spring Boot · Spring Security · JPA · JWT · Maven Frontend: React · TypeScript · MUI · Zustand · React Hook Form',
+    p6Title:         'Task Automation Panel',
+    p6Desc:          'AutoPanel is a web-based task automation platform designed for small and medium-sized businesses (SMEs). It allows business teams to define rules such as "if X, then Y," execute internal workflows, and monitor team activity from a centralized dashboard, with restricted access and security auditing.',
 
     // Contacto
     contactTitle:    "Let's talk about your project",
@@ -430,22 +434,26 @@ function initNavbarScrollStyle() {
 }
 
 // ============================================================
-//  Stack cards hover
+//  Stack tabs — switching entre Técnicas y Blandas
 // ============================================================
 
-function initStackCardsHover() {
-  const cards = document.querySelectorAll('.cards .card');
-  if (!cards.length) return;
+function initStackTabs() {
+  const tabs  = document.querySelectorAll('.stack-tab');
+  const panes = document.querySelectorAll('.stack-pane');
+  if (!tabs.length) return;
 
-  cards.forEach((card) => {
-    card.addEventListener('mouseenter', () => {
-      card.style.transform  = 'translateY(-6px) scale(1.01)';
-      card.style.transition = 'transform 0.2s ease-out, box-shadow 0.2s ease-out';
-      card.style.boxShadow  = '0 12px 30px rgba(0,0,0,0.6), 0 0 18px rgba(148,92,216,0.7)';
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'translateY(0) scale(1)';
-      card.style.boxShadow = 'none';
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+
+      tabs.forEach(t  => { t.classList.toggle('active', t.dataset.tab === target); t.setAttribute('aria-selected', t.dataset.tab === target); });
+      panes.forEach(p => { p.classList.toggle('active', p.id === 'pane-' + target); });
+
+      // Si se activa el pane de constelación, forzar resize del canvas
+      if (target === 'tech') {
+        const canvas = document.getElementById('constellation-canvas');
+        if (canvas) window.dispatchEvent(new Event('resize'));
+      }
     });
   });
 }
@@ -465,6 +473,279 @@ onDomReady(() => {
   initSmoothNav();
   initActiveSectionHighlight();
   initNavbarScrollStyle();
-  initStackCardsHover();
+  initStackTabs();
   runTerminalSequence();
+  initConstellation();
+  initGears();
 });
+
+// ============================================================
+//  TECH CONSTELLATION — Canvas interactivo
+// ============================================================
+
+function initConstellation() {
+  const TECHS = [
+    { id: 'html5',    label: 'HTML5',        cat: 'frontend', emoji: '🌐', color: '#58a6ff' },
+    { id: 'css',      label: 'CSS',          cat: 'frontend', emoji: '🎨', color: '#58a6ff' },
+    { id: 'bootstrap',label: 'Bootstrap',    cat: 'frontend', emoji: '🅱', color: '#58a6ff' },
+    { id: 'js',       label: 'JavaScript',   cat: 'frontend', emoji: '⚡', color: '#58a6ff' },
+    { id: 'resp',     label: 'Responsive',   cat: 'frontend', emoji: '📱', color: '#58a6ff' },
+    { id: 'java',     label: 'Java',         cat: 'lang',     emoji: '☕', color: '#f78166' },
+    { id: 'python',   label: 'Python',       cat: 'lang',     emoji: '🐍', color: '#f78166' },
+    { id: 'spring',   label: 'Spring Boot',  cat: 'backend',  emoji: '🌿', color: '#3fb950' },
+    { id: 'mvc',      label: 'MVC',          cat: 'backend',  emoji: '🏗', color: '#3fb950' },
+    { id: 'micro',    label: 'Microservices',cat: 'backend',  emoji: '🔬', color: '#3fb950' },
+    { id: 'api',      label: 'APIs REST',    cat: 'test',     emoji: '🔗', color: '#79c0ff' },
+    { id: 'postman',  label: 'Postman',      cat: 'test',     emoji: '📬', color: '#79c0ff' },
+    { id: 'unit',     label: 'Unit Test',    cat: 'test',     emoji: '✅', color: '#79c0ff' },
+    { id: 'integ',    label: 'Integ. Test',  cat: 'test',     emoji: '🔄', color: '#79c0ff' },
+    { id: 'mysql',    label: 'MySQL',        cat: 'db',       emoji: '🗄', color: '#d2a8ff' },
+    { id: 'sql',      label: 'SQL',          cat: 'db',       emoji: '📊', color: '#d2a8ff' },
+    { id: 'gradle',   label: 'Gradle/Maven', cat: 'devops',   emoji: '🛠', color: '#ffa657' },
+    { id: 'git',      label: 'Git/GitHub',   cat: 'devops',   emoji: '🐙', color: '#ffa657' },
+    { id: 'gitflow',  label: 'GitFlow',      cat: 'devops',   emoji: '🌊', color: '#ffa657' },
+    { id: 'docker',   label: 'Docker',       cat: 'devops',   emoji: '🐳', color: '#ffa657' },
+    { id: 'aws',      label: 'AWS',          cat: 'devops',   emoji: '☁️', color: '#ffa657' },
+  ];
+
+  const EDGES = [
+    ['html5','css'],['css','bootstrap'],['bootstrap','js'],['js','resp'],
+    ['java','spring'],['java','mvc'],['java','python'],['spring','gradle'],
+    ['spring','mvc'],['mvc','micro'],['spring','api'],['api','postman'],
+    ['api','unit'],['unit','integ'],['mysql','sql'],['sql','spring'],
+    ['gradle','docker'],['git','gitflow'],['docker','aws'],['git','spring'],
+    ['js','api'],['java','unit'],['spring','micro'],['aws','micro'],
+  ];
+
+  // Estrellas generadas una sola vez (deterministas, sin Math.random)
+  const STARS = Array.from({ length: 70 }, (_, i) => ({
+    x: ((i * 2654435769 >>> 0) % 10000) / 10000,
+    y: ((i * 2246822519 >>> 0) % 10000) / 10000,
+    r: 0.4 + ((i * 1234567891 >>> 0) % 10) / 10 * 0.8,
+    a: 0.08 + ((i * 987654321 >>> 0) % 10) / 10 * 0.25,
+  }));
+
+  const canvas = document.getElementById('constellation-canvas');
+  const tip    = document.getElementById('constellation-tip');
+  const wrap   = document.getElementById('constellation-wrap');
+  if (!canvas || !wrap) return;
+
+  const ctx = canvas.getContext('2d');
+  let W = 0, H = 0, nodes = [], hoverId = null;
+
+  function buildNodes(w, h) {
+    const cx = w / 2, cy = h / 2, R = Math.min(w, h) * 0.38;
+    const cats = [...new Set(TECHS.map(t => t.cat))];
+    return TECHS.map((t, ri) => {
+      const sc = TECHS.filter(x => x.cat === t.cat), ci = sc.indexOf(t);
+      const base = cats.indexOf(t.cat) * (Math.PI * 2 / cats.length);
+      const a = base + (ci - (sc.length - 1) / 2) * 0.3;
+      const rv = 0.72 + ((ri * 3141592653 >>> 0) % 1000) / 1000 * 0.26;
+      return { ...t, ox: cx + Math.cos(a) * R * rv, oy: cy + Math.sin(a) * R * rv, x: 0, y: 0, nr: w < 480 ? 16 : 20 };
+    });
+  }
+
+  function setSize() {
+    const nw = Math.round(wrap.getBoundingClientRect().width);
+    const nh = canvas.offsetHeight || 260;
+    if (nw === W && nh === H) return false;
+    W = nw; H = nh;
+    const dpr = devicePixelRatio || 1;
+    canvas.width  = W * dpr;
+    canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    nodes = buildNodes(W, H);
+    return true;
+  }
+
+  function draw(ts) {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = '#0d1117';
+    ctx.fillRect(0, 0, W, H);
+
+    // Estrellas
+    STARS.forEach(s => {
+      ctx.beginPath();
+      ctx.arc(s.x * W, s.y * H, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(200,220,255,${s.a})`;
+      ctx.fill();
+    });
+
+    // Flotación suave de nodos
+    nodes.forEach(n => {
+      n.x = n.ox + Math.sin(ts / 1800 + n.ox * 0.01) * 5;
+      n.y = n.oy + Math.cos(ts / 2200 + n.oy * 0.01) * 4;
+    });
+
+    const nMap = Object.fromEntries(nodes.map(n => [n.id, n]));
+
+    // Aristas
+    EDGES.forEach(([a, b]) => {
+      const na = nMap[a], nb = nMap[b];
+      if (!na || !nb) return;
+      const isHov  = hoverId && (na.id === hoverId || nb.id === hoverId);
+      const pulse  = Math.sin(ts / 900 + na.ox + nb.ox) * 0.5 + 0.5;
+      ctx.save();
+      ctx.globalAlpha  = isHov ? 0.75 : 0.09 + pulse * 0.06;
+      ctx.strokeStyle  = isHov ? na.color : '#58a6ff';
+      ctx.lineWidth    = isHov ? 1.5 : 0.6;
+      ctx.setLineDash(isHov ? [] : [3, 4]);
+      ctx.beginPath(); ctx.moveTo(na.x, na.y); ctx.lineTo(nb.x, nb.y); ctx.stroke();
+      ctx.restore();
+      // Pulso viajero al hacer hover
+      if (isHov) {
+        const t2 = (ts / 700) % 1;
+        ctx.save(); ctx.globalAlpha = 0.9;
+        ctx.beginPath();
+        ctx.arc(na.x + (nb.x - na.x) * t2, na.y + (nb.y - na.y) * t2, 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = na.color; ctx.fill(); ctx.restore();
+      }
+    });
+
+    // Nodos
+    nodes.forEach(n => {
+      const isHov = n.id === hoverId, r = n.nr * (isHov ? 1.18 : 1);
+      ctx.save(); ctx.translate(n.x, n.y);
+      if (isHov) {
+        const g = ctx.createRadialGradient(0, 0, r * 0.5, 0, 0, r * 2.5);
+        g.addColorStop(0, n.color + '33'); g.addColorStop(1, n.color + '00');
+        ctx.beginPath(); ctx.arc(0, 0, r * 2.5, 0, Math.PI * 2); ctx.fillStyle = g; ctx.fill();
+      }
+      ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI * 2);
+      ctx.fillStyle = '#161b22'; ctx.fill();
+      ctx.strokeStyle = n.color; ctx.lineWidth = isHov ? 1.8 : 0.9;
+      ctx.globalAlpha = isHov ? 1 : 0.85; ctx.stroke();
+      ctx.font = `${r * 0.9}px serif`;
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.globalAlpha = 1; ctx.fillText(n.emoji, 0, 1);
+      ctx.font = `${W < 480 ? 9 : 10}px monospace`;
+      ctx.fillStyle = isHov ? n.color : '#8b949e';
+      ctx.globalAlpha = isHov ? 1 : 0.8;
+      ctx.fillText(n.label, 0, r + 11);
+      ctx.restore();
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  // Arranque
+  setSize();
+  requestAnimationFrame(draw);
+
+  // Resize con debounce — no reinicia nodos si el tamaño no cambió
+  let rsz = null;
+  new ResizeObserver(() => {
+    clearTimeout(rsz);
+    rsz = setTimeout(() => setSize(), 120);
+  }).observe(wrap);
+
+  // Interacción mouse
+  canvas.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    let found = null;
+    nodes.forEach(n => {
+      const dx = n.x - mx, dy = n.y - my;
+      if (Math.sqrt(dx * dx + dy * dy) < n.nr + 8) found = n;
+    });
+    hoverId = found ? found.id : null;
+    if (found) {
+      tip.style.opacity = '1';
+      const lx = found.x + found.nr + 6;
+      tip.style.left = (lx + 180 > W ? found.x - found.nr - 130 : lx) + 'px';
+      tip.style.top  = (found.y - 16) + 'px';
+      const nb = EDGES.filter(([a, b]) => a === found.id || b === found.id).length;
+      tip.innerHTML = `<strong style="color:${found.color}">${found.label}</strong><br>conexiones: ${nb}`;
+    } else {
+      tip.style.opacity = '0';
+    }
+  });
+
+  canvas.addEventListener('mouseleave', () => { hoverId = null; tip.style.opacity = '0'; });
+}
+
+// ============================================================
+//  GEARS SOFT SKILLS — SVG animado
+// ============================================================
+
+function initGears() {
+  const SKILLS = [
+    { name: 'Comunicación clara y efectiva',       desc: 'Expreso ideas técnicas y no técnicas de forma precisa en cualquier contexto.',              color: '#3fb950' },
+    { name: 'Trabajo colaborativo y en equipo',    desc: 'Contribuyo activamente en entornos ágiles y colaborativos, adaptándome al ritmo del grupo.', color: '#58a6ff' },
+    { name: 'Resolución de problemas',             desc: 'Analizo, descompongo y resuelvo desafíos técnicos de forma sistemática y creativa.',         color: '#ffa657' },
+    { name: 'Adaptabilidad y flexibilidad',        desc: 'Me ajusto rápido a nuevos stacks, metodologías y cambios de prioridad sin perder el foco.',  color: '#d2a8ff' },
+    { name: 'Confiabilidad y compromiso',          desc: 'Cumplo los acuerdos, tiempos y entregables. Mi código llega cuando se espera.',              color: '#f78166' },
+    { name: 'Actitud proactiva y de ayuda',        desc: 'Anticipo problemas, propongo mejoras y apoyo activamente a mis compañeros de equipo.',       color: '#f0728f' },
+    { name: 'Inglés B1 — lectura técnica avanzada',desc: 'Consumo documentación técnica, RFCs y papers en inglés sin fricción.',                       color: '#7ee787' },
+  ];
+
+  // Genera el path de un engranaje centrado en (0,0)
+  function gearPath(teeth, R, r) {
+    const step = Math.PI * 2 / teeth, half = step * 0.38;
+    let d = '';
+    for (let i = 0; i < teeth; i++) {
+      const a0 = i * step - half, a1 = i * step + half;
+      const a2 = a1 + step * 0.08, a3 = (i + 1) * step - half - step * 0.08;
+      if (i === 0) d += `M${r * Math.cos(a0)},${r * Math.sin(a0)}`;
+      d += ` L${R * Math.cos(a0)},${R * Math.sin(a0)}`;
+      d += ` L${R * Math.cos(a1)},${R * Math.sin(a1)}`;
+      d += ` L${r * Math.cos(a2)},${r * Math.sin(a2)}`;
+      d += ` L${r * Math.cos(a3)},${r * Math.sin(a3)}`;
+    }
+    return d + 'Z';
+  }
+
+  // Pinta los paths de cada engranaje
+  // Centro: 16 dientes R=64 r=56 | Satélites: 10 dientes R=44 r=38
+  [[16, 64, 56], [10, 44, 38], [10, 44, 38], [10, 44, 38], [10, 44, 38], [10, 44, 38], [10, 44, 38]]
+    .forEach(([t, R, r], i) => {
+      const el = document.getElementById('gp' + i);
+      if (el) el.setAttribute('d', gearPath(t, R, r));
+    });
+
+  const angles  = [0, 0, 0, 0, 0, 0, 0];
+  const dirs    = [1, -1, 1, -1, 1, -1, 1];   // alternados para simular engrane real
+  const speeds  = [0.3, 0.54, 0.54, 0.54, 0.54, 0.54, 0.54];
+  const centers = [[340, 198], [340, 84], [468, 136], [468, 260], [340, 312], [212, 260], [212, 136]];
+
+  let hovered = null, lastTs = null;
+
+  const nameEl = document.getElementById('gears-name');
+  const descEl = document.getElementById('gears-desc');
+
+  // Hover sobre cada engranaje
+  document.querySelectorAll('.gear-grp').forEach(g => {
+    const i = +g.dataset.idx;
+    g.addEventListener('mouseenter', () => {
+      hovered = i;
+      if (nameEl) { nameEl.textContent = '▶ ' + SKILLS[i].name; nameEl.style.color = SKILLS[i].color; }
+      if (descEl) descEl.textContent = SKILLS[i].desc;
+    });
+    g.addEventListener('mouseleave', () => {
+      hovered = null;
+      if (nameEl) { nameEl.textContent = '▶ Selecciona un engranaje'; nameEl.style.color = '#e6edf3'; }
+      if (descEl) descEl.textContent = '';
+    });
+  });
+
+  // Loop de rotación
+  function tick(ts) {
+    if (!lastTs) lastTs = ts;
+    const dt = Math.min((ts - lastTs) / 1000, 0.05);
+    lastTs = ts;
+
+    angles.forEach((_, i) => {
+      // Al hacer hover el sistema frena suavemente
+      angles[i] += dirs[i] * speeds[i] * dt * (hovered !== null ? 0.12 : 1) * 60;
+    });
+
+    angles.forEach((a, i) => {
+      const el = document.getElementById('gr' + i);
+      if (el) el.setAttribute('transform', `translate(${centers[i][0]},${centers[i][1]}) rotate(${a})`);
+    });
+
+    requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
+}
