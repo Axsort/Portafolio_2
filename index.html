@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#000000" />
   <title>Gabriel Castro | Full Stack Developer</title>
 
   <!-- SEO & Open Graph -->
@@ -22,6 +23,9 @@
 <body>
   <!-- SCANLINES overlay -->
   <div class="crt-scanlines" aria-hidden="true"></div>
+
+  <!-- BACK TO TOP -->
+  <a href="#" class="btn-back-top" id="btn-back-top" aria-label="Volver arriba" title="Volver arriba">↑</a>
 
   <header class="navbar-head">
     <nav class="navbar navbar-expand-lg reveal-on-scroll">
@@ -72,8 +76,8 @@
   <main>
     <!--=========================SOBRE MÍ======================================-->
     <section id="sobre-mi" class="sobre-mi reveal-on-scroll">
-      <img class="banner-img" src="media/Foto_principal.webp"
-        alt="Foto de perfil de Gabriel Castro, desarrollador Full Stack" />
+      <img class="banner-img" src="media/Foto_principal.webp" width="1920" height="480"
+        alt="Foto de perfil de Gabriel Castro, desarrollador Full Stack" loading="eager" />
 
       <!-- ====== TERMINAL WINDOW ====== -->
       <div class="terminal-window">
@@ -148,11 +152,11 @@
 
       <!-- Redes sociales + CV hero -->
       <div class="redes">
-        <img class="img-redes" src="media/logo_github-copia.webp" alt="GitHub" />
+        <img class="img-redes" src="media/logo_github-copia.webp" alt="GitHub" loading="lazy" />
         <a class="enlace-github" href="https://github.com/Axsort" target="_blank" rel="noopener">
           <span>GitHub: Axsort</span>
         </a>
-        <img class="img-redes" src="media/linkedin_logo-copia.webp" alt="LinkedIn" />
+        <img class="img-redes" src="media/linkedin_logo-copia.webp" alt="LinkedIn" loading="lazy" />
         <a class="enlace-linkedin" href="https://www.linkedin.com/in/gabrielcastro01/" target="_blank" rel="noopener">
           <span>LinkedIn: Gabriel Adrian Castro Perez</span>
         </a>
@@ -165,9 +169,9 @@
 
     <!--=========================STACK======================================-->
     <section id="stack" class="stack reveal-on-scroll">
-      <h5 class="title-stack">
+      <h2 class="title-stack">
         <strong data-i18n="stackTitle">Stack</strong>
-      </h5>
+      </h2>
 
       <!-- ── PANEL TABS ── -->
       <div class="stack-panel">
@@ -193,13 +197,10 @@
 
         <!-- ── PANEL: TÉCNICAS ── -->
         <div class="stack-pane active" id="pane-tech">
-          <!-- Visual a pantalla completa dentro del panel -->
           <div class="stack-visual" id="constellation-wrap">
             <canvas id="constellation-canvas" class="skill-canvas"></canvas>
             <div id="constellation-tip" class="skill-tooltip"></div>
           </div>
-
-          <!-- Franja inferior: leyenda + chips -->
           <div class="stack-meta">
             <div class="constellation-legend">
               <span class="leg-item"><span class="leg-dot" style="background:#58a6ff;"></span>Frontend</span>
@@ -237,9 +238,9 @@
 
         <!-- ── PANEL: BLANDAS ── -->
         <div class="stack-pane" id="pane-soft">
-          <!-- Visual a pantalla completa dentro del panel -->
           <div class="stack-visual" id="gears-wrap">
-            <svg id="gears-svg" viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg" class="gears-svg">
+            <svg id="gears-svg" viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg" class="gears-svg"
+              aria-label="Diagrama interactivo de habilidades blandas" role="img">
               <pattern id="gdots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
                 <circle cx="1" cy="1" r="0.8" fill="#21262d"/>
               </pattern>
@@ -319,7 +320,6 @@
             </svg>
           </div>
 
-          <!-- Franja inferior: info panel + lista de skills -->
           <div class="stack-meta">
             <div id="gears-info" class="gears-info-panel">
               <div id="gears-name" class="gears-info-name">▶ Selecciona un engranaje</div>
@@ -342,131 +342,227 @@
 
     <!--=========================PROYECTOS======================================-->
     <section id="proyectos" class="proyectos reveal-on-scroll">
-      <h5 class="title-proyects">
+      <h2 class="title-proyects">
         <strong data-i18n="projectsTitle">Proyectos</strong>
-      </h5>
-      <div class="carousel-container">
-        <div id="carouselExampleDark" class="carousel carousel-dark slide">
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
-              aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
-              aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
-              aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3"
-              aria-label="Slide 4"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4"
-              aria-label="Slide 5"></button>
-              <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="5"
-              aria-label="Slide 6"></button>
+      </h2>
+
+      <div class="projects-grid">
+
+        <!-- ── Card 1: Mano A Mano ── -->
+        <article class="project-card">
+          <div class="project-card-bar">
+            <div class="terminal-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <span class="project-card-filename">mano-a-mano.js</span>
+            <span class="project-card-num">01</span>
           </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="10000">
-              <a href="https://mano-a-mano-frontend.vercel.app/index.html" target="_blank">
-                <img src="media/ManoAMano.webp" class="d-block w-100 img-carousel" alt="Mano A Mano" />
-              </a>
-              <div class="carousel-caption d-none d-md-block">
-                <h5 data-i18n="p1Title">E-Commerce Mano A Mano</h5>
-                <p data-i18n="p1Desc">
-                  Proyecto integrador colaborativo en Generation México. HTML,
-                  CSS, Bootstrap y JavaScript con catálogo de productos y
-                  carrito funcional.
-                </p>
-              </div>
+          <a class="project-card-img-wrap" href="https://mano-a-mano-frontend.vercel.app/index.html"
+            target="_blank" rel="noopener" aria-label="Ver proyecto Mano A Mano">
+            <img src="media/ManoAMano.webp" alt="E-Commerce Mano A Mano" loading="lazy" class="project-card-img" />
+            <div class="project-card-overlay">
+              <span class="project-card-overlay-text" data-i18n="btnViewDemo">↗ Ver demo</span>
             </div>
-
-            <div class="carousel-item" data-bs-interval="2000">
-              <a href="https://hackathon-1-generation-mexico.vercel.app/" target="_blank">
-                <img src="media/Landing.webp" class="d-block w-100 img-carousel" alt="Landing Page" />
-              </a>
-              <div class="carousel-caption d-none d-md-block">
-                <h5 data-i18n="p2Title">Landing Page SportX</h5>
-                <p data-i18n="p2Desc">
-                  Landing page colaborativa entregada en un Hackathon de 7
-                  horas. HTML, CSS, Bootstrap y JavaScript.
-                </p>
-              </div>
+          </a>
+          <div class="project-card-body">
+            <h3 class="project-card-title" data-i18n="p1Title">E-Commerce Mano A Mano</h3>
+            <p class="project-card-desc" data-i18n="p1Desc">Proyecto integrador colaborativo en Generation México. HTML, CSS, Bootstrap y JavaScript con catálogo de productos y carrito funcional.</p>
+            <div class="project-card-chips">
+              <span class="chip chip-frontend">HTML5</span>
+              <span class="chip chip-frontend">CSS</span>
+              <span class="chip chip-frontend">Bootstrap</span>
+              <span class="chip chip-frontend">JavaScript</span>
             </div>
-
-            <div class="carousel-item">
-              <a href="https://github.com/Axsort/Hackathon_2_Generation_Mexico_agenda_Java" target="_blank">
-                <img src="media/agendaJava.webp" class="d-block w-100 img-carousel" alt="Agenda Java" />
-              </a>
-              <div class="carousel-caption d-none d-md-block">
-                <h5 data-i18n="p3Title">Sistema Agenda Telefónica — Java</h5>
-                <p data-i18n="p3Desc">
-                  Aplicación 100% Java con gestión de contactos, detección de
-                  duplicados y arquitectura orientada a objetos.
-                </p>
-              </div>
-            </div>
-
-            <div class="carousel-item">
-              <a href="https://github.com/Axsort/API-JAVA-Gradle-Spring-Boot" target="_blank">
-                <img src="media/SpringBoot_App.webp" class="d-block w-100 img-carousel" alt="API REST Java" />
-              </a>
-              <div class="carousel-caption d-none d-md-block">
-                <h5 data-i18n="p4Title">
-                  API REST — Java 17 + Spring Boot + Gradle
-                </h5>
-                <p data-i18n="p4Desc">
-                  API RESTful completa con arquitectura MVC en capas
-                  (Controller, Service, Repository). Java 17 y Gradle como
-                  sistema de build moderno.
-                </p>
-              </div>
-            </div>
-
-            <div class="carousel-item">
-              <a href="https://sistema-de-inventarios-five.vercel.app/" target="_blank">
-                <img src="media/inventario.webp" class="d-block w-100 img-carousel" alt="Sistema de gestión de inventarios" />
-              </a>
-              <div class="carousel-caption d-none d-md-block">
-                <h5 data-i18n="p5Title">Sistema de gestión de inventarios</h5>
-                <p data-i18n="p5Desc">
-                  Sistema de Gestión de Inventario Aplicación fullstack para
-                  control de inventario empresarial. Gestión de productos,
-                  categorías, proveedores y movimientos de stock, con
-                  autenticación JWT y roles de usuario. Backend: Spring Boot ·
-                  Spring Security · JPA · JWT · Maven Frontend: React ·
-                  TypeScript · MUI · Zustand · React Hook Form
-                </p>
-              </div>
-            </div>
-              <div class="carousel-item">
-              <a href="https://sistema-de-inventarios-five.vercel.app/" target="_blank">
-                <img src="media/automation.webp" class="d-block w-100 img-carousel" alt="Panel de automatización de tareas" />
-              </a>
-              <div class="carousel-caption d-none d-md-block">
-                <h5 data-i18n="p6Title">Panel de automatización de tareas</h5>
-                <p data-i18n="p6Desc">
-                  AutoPanel es un panel web de automatización de tareas orientado a PYMEs. Permite a equipos
-                  empresariales definir reglas del tipo "si X, entonces Y", ejecutar flujos internos de trabajo y
-                  monitorear la actividad del equipo desde un panel centralizado, con acceso restringido y auditoría de
-                  seguridad.
-                </p>
-              </div>
+            <div class="project-card-actions">
+              <a href="https://mano-a-mano-frontend.vercel.app/index.html" target="_blank" rel="noopener"
+                class="project-btn project-btn-live" data-i18n="btnViewDemo">↗ Ver demo</a>
             </div>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-      </div>
+        </article>
+
+        <!-- ── Card 2: Landing SportX ── -->
+        <article class="project-card">
+          <div class="project-card-bar">
+            <div class="terminal-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <span class="project-card-filename">sportx-landing.js</span>
+            <span class="project-card-num">02</span>
+          </div>
+          <a class="project-card-img-wrap" href="https://hackathon-1-generation-mexico.vercel.app/"
+            target="_blank" rel="noopener" aria-label="Ver proyecto SportX">
+            <img src="media/Landing.webp" alt="Landing Page SportX" loading="lazy" class="project-card-img" />
+            <div class="project-card-overlay">
+              <span class="project-card-overlay-text" data-i18n="btnViewDemo">↗ Ver demo</span>
+            </div>
+          </a>
+          <div class="project-card-body">
+            <h3 class="project-card-title" data-i18n="p2Title">Landing Page SportX</h3>
+            <p class="project-card-desc" data-i18n="p2Desc">Landing page colaborativa entregada en un Hackathon de 7 horas. HTML, CSS, Bootstrap y JavaScript.</p>
+            <div class="project-card-chips">
+              <span class="chip chip-frontend">HTML5</span>
+              <span class="chip chip-frontend">CSS</span>
+              <span class="chip chip-frontend">Bootstrap</span>
+              <span class="chip chip-frontend">JavaScript</span>
+            </div>
+            <div class="project-card-actions">
+              <a href="https://hackathon-1-generation-mexico.vercel.app/" target="_blank" rel="noopener"
+                class="project-btn project-btn-live" data-i18n="btnViewDemo">↗ Ver demo</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── Card 3: Agenda Java ── -->
+        <article class="project-card">
+          <div class="project-card-bar">
+            <div class="terminal-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <span class="project-card-filename">agenda.java</span>
+            <span class="project-card-num">03</span>
+          </div>
+          <a class="project-card-img-wrap" href="https://github.com/Axsort/Hackathon_2_Generation_Mexico_agenda_Java"
+            target="_blank" rel="noopener" aria-label="Ver código Agenda Java">
+            <img src="media/agendaJava.webp" alt="Sistema Agenda Telefónica Java" loading="lazy" class="project-card-img" />
+            <div class="project-card-overlay">
+              <span class="project-card-overlay-text" data-i18n="btnViewCode">⌥ Ver código</span>
+            </div>
+          </a>
+          <div class="project-card-body">
+            <h3 class="project-card-title" data-i18n="p3Title">Sistema Agenda Telefónica — Java</h3>
+            <p class="project-card-desc" data-i18n="p3Desc">Aplicación 100% Java con gestión de contactos, detección de duplicados y arquitectura orientada a objetos.</p>
+            <div class="project-card-chips">
+              <span class="chip chip-lang">Java</span>
+              <span class="chip chip-backend">OOP</span>
+              <span class="chip chip-devops">CLI</span>
+            </div>
+            <div class="project-card-actions">
+              <a href="https://github.com/Axsort/Hackathon_2_Generation_Mexico_agenda_Java" target="_blank" rel="noopener"
+                class="project-btn project-btn-code" data-i18n="btnViewCode">⌥ Ver código</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── Card 4: API REST ── -->
+        <article class="project-card">
+          <div class="project-card-bar">
+            <div class="terminal-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <span class="project-card-filename">api-rest.java</span>
+            <span class="project-card-num">04</span>
+          </div>
+          <a class="project-card-img-wrap" href="https://github.com/Axsort/API-JAVA-Gradle-Spring-Boot"
+            target="_blank" rel="noopener" aria-label="Ver código API REST">
+            <img src="media/SpringBoot_App.webp" alt="API REST Java Spring Boot" loading="lazy" class="project-card-img" />
+            <div class="project-card-overlay">
+              <span class="project-card-overlay-text" data-i18n="btnViewCode">⌥ Ver código</span>
+            </div>
+          </a>
+          <div class="project-card-body">
+            <h3 class="project-card-title" data-i18n="p4Title">API REST — Java 17 + Spring Boot + Gradle</h3>
+            <p class="project-card-desc" data-i18n="p4Desc">API RESTful completa con arquitectura MVC en capas (Controller, Service, Repository). Java 17 y Gradle como sistema de build moderno.</p>
+            <div class="project-card-chips">
+              <span class="chip chip-lang">Java 17</span>
+              <span class="chip chip-backend">Spring Boot</span>
+              <span class="chip chip-backend">MVC</span>
+              <span class="chip chip-devops">Gradle</span>
+              <span class="chip chip-test">REST</span>
+            </div>
+            <div class="project-card-actions">
+              <a href="https://github.com/Axsort/API-JAVA-Gradle-Spring-Boot" target="_blank" rel="noopener"
+                class="project-btn project-btn-code" data-i18n="btnViewCode">⌥ Ver código</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── Card 5: Inventario ── -->
+        <article class="project-card project-card--featured">
+          <div class="project-card-bar">
+            <div class="terminal-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <span class="project-card-filename">inventario-system.tsx</span>
+            <span class="project-card-num">05</span>
+          </div>
+          <a class="project-card-img-wrap" href="https://sistema-de-inventarios-five.vercel.app/"
+            target="_blank" rel="noopener" aria-label="Ver sistema de inventarios">
+            <img src="media/inventario.webp" alt="Sistema de gestión de inventarios" loading="lazy" class="project-card-img" />
+            <div class="project-card-overlay">
+              <span class="project-card-overlay-text" data-i18n="btnViewDemo">↗ Ver demo</span>
+            </div>
+          </a>
+          <div class="project-card-body">
+            <h3 class="project-card-title" data-i18n="p5Title">Sistema de gestión de inventarios</h3>
+            <p class="project-card-desc" data-i18n="p5Desc">Aplicación fullstack para control de inventario empresarial con autenticación JWT, roles de usuario, gestión de productos, categorías, proveedores y movimientos de stock.</p>
+            <div class="project-card-chips">
+              <span class="chip chip-backend">Spring Boot</span>
+              <span class="chip chip-backend">Spring Security</span>
+              <span class="chip chip-test">JWT</span>
+              <span class="chip chip-db">MySQL</span>
+              <span class="chip chip-frontend">React</span>
+              <span class="chip chip-frontend">TypeScript</span>
+              <span class="chip chip-frontend">MUI</span>
+            </div>
+            <div class="project-card-actions">
+              <a href="https://sistema-de-inventarios-five.vercel.app/" target="_blank" rel="noopener"
+                class="project-btn project-btn-live" data-i18n="btnViewDemo">↗ Ver demo</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── Card 6: AutoPanel ── -->
+        <article class="project-card project-card--featured">
+          <div class="project-card-bar">
+            <div class="terminal-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <span class="project-card-filename">autopanel.tsx</span>
+            <span class="project-card-num">06</span>
+          </div>
+          <a class="project-card-img-wrap" href="https://taskautomation-3no2z0jio-axsort-s-projects.vercel.app/login"
+            target="_blank" rel="noopener" aria-label="Ver AutoPanel">
+            <img src="media/automation.webp" alt="Panel de automatización de tareas" loading="lazy" class="project-card-img" />
+            <div class="project-card-overlay">
+              <span class="project-card-overlay-text" data-i18n="btnViewDemo">↗ Ver demo</span>
+            </div>
+          </a>
+          <div class="project-card-body">
+            <h3 class="project-card-title" data-i18n="p6Title">Panel de automatización de tareas</h3>
+            <p class="project-card-desc" data-i18n="p6Desc">AutoPanel es un panel web de automatización orientado a PYMEs. Define reglas "si X, entonces Y", ejecuta flujos de trabajo y monitorea la actividad del equipo desde un panel centralizado con auditoría de seguridad.</p>
+            <div class="project-card-chips">
+              <span class="chip chip-backend">Spring Boot</span>
+              <span class="chip chip-test">JWT</span>
+              <span class="chip chip-test">REST</span>
+              <span class="chip chip-frontend">React</span>
+              <span class="chip chip-devops">Docker</span>
+            </div>
+            <div class="project-card-actions">
+              <a href="https://taskautomation-3no2z0jio-axsort-s-projects.vercel.app/login" target="_blank" rel="noopener"
+                class="project-btn project-btn-live" data-i18n="btnViewDemo">↗ Ver demo</a>
+            </div>
+          </div>
+        </article>
+
+      </div><!-- /projects-grid -->
     </section>
 
     <!--=========================CONTACTO======================================-->
     <section id="contacto" class="section-padding bg-dark text-white reveal-on-scroll">
       <div class="container">
-        <h2 class="text-center mb-5" data-i18n="contactTitle">
+        <h2 class="text-center mb-4" data-i18n="contactTitle">
           Hablemos de tu proyecto
         </h2>
         <p class="text-center mb-5 text-muted" data-i18n="contactSubtitle">
@@ -474,9 +570,9 @@
           te ayude a desarrollar alguna idea? Escríbeme y en breve te
           respondo.
         </p>
-        <div class="row">
-          <div class="col-lg-12 mx-1">
-            <form id="contact-form">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-8">
+            <form id="contact-form" novalidate>
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label for="Nombre" class="form-label fw-semibold" data-i18n="labelName">Tu nombre:</label>
@@ -489,14 +585,14 @@
                     required />
                 </div>
               </div>
-              <div class="mb-3">
+              <div class="mb-4">
                 <label for="Mensaje" class="form-label fw-semibold" data-i18n="labelMessage">Mensaje:</label>
                 <textarea id="Mensaje" name="Mensaje" class="form-control" rows="5"
                   data-i18n-placeholder="placeholderMessage"
                   placeholder="Cuéntame un poco sobre tu proyecto, idea o necesidad (web, app, portafolio, etc.) y con gusto te ayudo a planearlo. ¡Recuerda, si lo puedes imaginar, lo podemos crear!"
                   required></textarea>
               </div>
-              <div id="status"></div>
+              <div id="status" role="alert" aria-live="polite"></div>
               <button type="submit" class="btn btn-primary btn-lg w-100" data-i18n="btnSend">
                 Enviar mensaje
               </button>

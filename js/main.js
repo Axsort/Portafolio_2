@@ -59,9 +59,9 @@ const TRANSLATIONS = {
     p4Title:         'API REST — Java 17 + Spring Boot + Gradle',
     p4Desc:          'API RESTful completa con arquitectura MVC en capas (Controller, Service, Repository). Java 17 y Gradle como sistema de build moderno.',
     p5Title:         'Sistema de inventarios',
-    p5Desc:          'Sistema de Gestión de Inventario Aplicación fullstack para control de inventario empresarial. Gestión de productos, categorías, proveedores y movimientos de stock, con autenticación JWT y roles de usuario. Backend: Spring Boot ·Spring Security · JPA · JWT · Maven Frontend: React ·TypeScript · MUI · Zustand · React Hook Form',
+    p5Desc:          'Aplicación fullstack para control de inventario empresarial con autenticación JWT, roles de usuario, gestión de productos, categorías, proveedores y movimientos de stock.',
     p6Title:         'Panel de automatización de tareas',
-    p6Desc:          'AutoPanel es un panel web de automatización de tareas orientado a PYMEs. Permite a equipos empresariales definir reglas del tipo "si pasa X, entonces haz Y", ejecutar flujos internos de trabajo y monitorear la actividad del equipo desde un panel centralizado, con acceso restringido y auditoría de seguridad.',
+    p6Desc:          'AutoPanel es un panel web de automatización orientado a PYMEs. Define reglas "si X, entonces Y", ejecuta flujos de trabajo y monitorea la actividad del equipo desde un panel centralizado con auditoría de seguridad.',
 
     // Contacto
     contactTitle:    'Hablemos de tu proyecto',
@@ -72,6 +72,10 @@ const TRANSLATIONS = {
     placeholderName: 'Ejemplo: Adrián Castro',
     placeholderMessage: 'Cuéntame un poco sobre tu proyecto, idea o necesidad (web, app, portafolio, etc.) y con gusto te ayudo a planearlo. ¡Recuerda, si lo puedes imaginar, lo podemos crear!',
     btnSend:         'Enviar mensaje',
+
+    // Proyectos — botones
+    btnViewDemo:     '↗ Ver demo',
+    btnViewCode:     '⌥ Ver código',
 
     // Footer
     footerRole:      'Desarrollador Full Stack',
@@ -93,7 +97,7 @@ const TRANSLATIONS = {
     langFlag:        '🇲🇽',
     langLabel:       'ES',
 
-    // Terminal — comandos (se mantienen en inglés porque son comandos reales)
+    // Terminal — comandos
     termCmd1:        ' ls -la',
     termCmd2:        ' git status',
     termCmd3:        ' cat README.md',
@@ -101,7 +105,7 @@ const TRANSLATIONS = {
     // Terminal — output ls
     lsProjects:      'projects/',
 
-    // Descripción (typewriter) — traducción fiel al original
+    // Descripción (typewriter)
     description:
       '// Name   : Gabriel Adrian Castro Pérez\n' +
       '// Role   : Java Full Stack Developer Jr.\n' +
@@ -137,19 +141,23 @@ const TRANSLATIONS = {
     p4Title:         'REST API — Java 17 + Spring Boot + Gradle',
     p4Desc:          'Full RESTful API with layered MVC architecture (Controller, Service, Repository). Java 17 and Gradle as a modern build system.',
     p5Title:         'Inventory Management System',
-    p5Desc:          'Inventory Management System Full-stack application for enterprise inventory control. Manage products, categories, suppliers and stock movements, with JWT authentication and user roles. Backend: Spring Boot · Spring Security · JPA · JWT · Maven Frontend: React · TypeScript · MUI · Zustand · React Hook Form',
+    p5Desc:          'Full-stack application for enterprise inventory control with JWT authentication, user roles, and management of products, categories, suppliers and stock movements.',
     p6Title:         'Task Automation Panel',
-    p6Desc:          'AutoPanel is a web-based task automation platform designed for small and medium-sized businesses (SMEs). It allows business teams to define rules such as "if X, then Y," execute internal workflows, and monitor team activity from a centralized dashboard, with restricted access and security auditing.',
+    p6Desc:          'AutoPanel is a web-based task automation platform for SMEs. Define "if X, then Y" rules, execute internal workflows, and monitor team activity from a centralized dashboard with security auditing.',
 
     // Contacto
     contactTitle:    "Let's talk about your project",
-    contactSubtitle: 'Do you have a project in mind, need a portfolio, or want help developing an idea? Write to me and I\'ll get back to you shortly.',
+    contactSubtitle: "Do you have a project in mind, need a portfolio, or want help developing an idea? Write to me and I'll get back to you shortly.",
     labelName:       'Your name:',
     labelEmail:      'Email address:',
     labelMessage:    'Message:',
     placeholderName: 'Example: John Smith',
-    placeholderMessage: 'Tell me a bit about your project, idea, or need (web, app, portfolio, etc.) and I\'ll be happy to help you plan it. Remember, if you can imagine it, we can create it!',
+    placeholderMessage: "Tell me a bit about your project, idea, or need (web, app, portfolio, etc.) and I'll be happy to help you plan it. Remember, if you can imagine it, we can create it!",
     btnSend:         'Send message',
+
+    // Proyectos — botones
+    btnViewDemo:     '↗ View demo',
+    btnViewCode:     '⌥ View code',
 
     // Footer
     footerRole:      'Full Stack Developer',
@@ -165,6 +173,34 @@ const TRANSLATIONS = {
 // ============================================================
 
 let currentLang = 'es';
+
+// ============================================================
+//  Utilidades
+// ============================================================
+
+function debounce(fn, delay) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, args), delay);
+  };
+}
+
+function onDomReady(callback) {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', callback);
+  } else {
+    callback();
+  }
+}
+
+function smoothScrollTo(hash) {
+  const target = document.querySelector(hash);
+  if (!target) return;
+  const headerOffset   = document.querySelector('.navbar-head')?.offsetHeight || 0;
+  const offsetPosition = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+  window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+}
 
 // ============================================================
 //  applyTranslation — aplica el idioma a todo el DOM
@@ -215,7 +251,6 @@ function toggleLang() {
   // Re-ejecutar el typewriter con el nuevo texto si ya estaba visible
   const twTarget = document.getElementById('typewriter-target');
   if (twTarget && twTarget.style.display !== 'none') {
-    // Limpiamos el elemento primero; typeInto invalidará el token viejo al arrancar
     twTarget.classList.remove('done');
     twTarget.textContent = '';
     const finalPrompt = document.getElementById('final-prompt');
@@ -229,65 +264,19 @@ function toggleLang() {
 }
 
 // ============================================================
-//  EmailJS
-// ============================================================
-
-emailjs.init('ZBE-Geyt5dY4D8tk_');
-
-const form = document.getElementById('contact-form');
-form.addEventListener('submit', function (event) {
-  event.preventDefault();
-  emailjs.sendForm('service_56qkuv2', 'template_8a3ijwf', form)
-    .then(function () {
-      const t = TRANSLATIONS[currentLang];
-      document.getElementById('status').innerHTML =
-        `<div class="alert alert-success">${t.msgSuccess}</div>`;
-      form.reset();
-    }, function (error) {
-      const t = TRANSLATIONS[currentLang];
-      document.getElementById('status').innerHTML =
-        `<div class="alert alert-danger">${t.msgError}${error.text}</div>`;
-    });
-});
-
-// ============================================================
-//  Utilidades
-// ============================================================
-
-function onDomReady(callback) {
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', callback);
-  } else {
-    callback();
-  }
-}
-
-function smoothScrollTo(hash) {
-  const target = document.querySelector(hash);
-  if (!target) return;
-  const headerOffset   = document.querySelector('.navbar-head')?.offsetHeight || 0;
-  const offsetPosition = target.getBoundingClientRect().top + window.scrollY - headerOffset;
-  window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-}
-
-// ============================================================
 //  Terminal typewriter
 // ============================================================
 
-// Token global — al crear uno nuevo, el anterior queda invalidado automáticamente
 let typewriterToken = null;
 
 function typeInto(el, text, speed = 45) {
-  // Genera un nuevo token; cualquier tick() previo que siga vivo lo detectará y se detendrá
   typewriterToken = {};
   const myToken = typewriterToken;
 
   return new Promise((resolve) => {
     let i = 0;
     function tick() {
-      // Si ya no soy el typewriter activo → paro sin escribir nada más
       if (myToken !== typewriterToken) { resolve(); return; }
-
       if (i < text.length) {
         el.textContent += text.charAt(i);
         i++;
@@ -307,9 +296,9 @@ function wait(ms) {
 async function runTerminalSequence() {
   const t = TRANSLATIONS[currentLang];
 
-  const lineLsCmd  = document.getElementById('line-ls-cmd');
-  const cmdLs      = document.getElementById('cmd-ls');
-  const outputLs   = document.getElementById('output-ls');
+  const lineLsCmd = document.getElementById('line-ls-cmd');
+  const cmdLs     = document.getElementById('cmd-ls');
+  const outputLs  = document.getElementById('output-ls');
 
   if (!lineLsCmd) return;
 
@@ -360,7 +349,9 @@ function initRevealOnScroll() {
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      entry.target.classList.toggle('is-visible', entry.isIntersecting);
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
     });
   }, { threshold: 0.12 });
 
@@ -416,7 +407,7 @@ function initActiveSectionHighlight() {
     });
   };
 
-  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('scroll', debounce(onScroll, 80), { passive: true });
   onScroll();
 }
 
@@ -434,6 +425,19 @@ function initNavbarScrollStyle() {
 }
 
 // ============================================================
+//  Back to top button
+// ============================================================
+
+function initBackToTop() {
+  const btn = document.getElementById('btn-back-top');
+  if (!btn) return;
+
+  const onScroll = () => btn.classList.toggle('visible', window.scrollY > 400);
+  window.addEventListener('scroll', debounce(onScroll, 100), { passive: true });
+  onScroll();
+}
+
+// ============================================================
 //  Stack tabs — switching entre Técnicas y Blandas
 // ============================================================
 
@@ -446,10 +450,14 @@ function initStackTabs() {
     tab.addEventListener('click', () => {
       const target = tab.dataset.tab;
 
-      tabs.forEach(t  => { t.classList.toggle('active', t.dataset.tab === target); t.setAttribute('aria-selected', t.dataset.tab === target); });
-      panes.forEach(p => { p.classList.toggle('active', p.id === 'pane-' + target); });
+      tabs.forEach(t => {
+        t.classList.toggle('active', t.dataset.tab === target);
+        t.setAttribute('aria-selected', t.dataset.tab === target);
+      });
+      panes.forEach(p => {
+        p.classList.toggle('active', p.id === 'pane-' + target);
+      });
 
-      // Si se activa el pane de constelación, forzar resize del canvas
       if (target === 'tech') {
         const canvas = document.getElementById('constellation-canvas');
         if (canvas) window.dispatchEvent(new Event('resize'));
@@ -459,21 +467,56 @@ function initStackTabs() {
 }
 
 // ============================================================
+//  EmailJS — inicializado dentro del DOMReady
+// ============================================================
+
+function initEmailJS() {
+  if (typeof emailjs === 'undefined') {
+    console.warn('EmailJS no está disponible');
+    return;
+  }
+
+  emailjs.init('ZBE-Geyt5dY4D8tk_');
+
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    const statusEl = document.getElementById('status');
+
+    emailjs.sendForm('service_56qkuv2', 'template_8a3ijwf', form)
+      .then(function () {
+        const t = TRANSLATIONS[currentLang];
+        if (statusEl) statusEl.innerHTML =
+          `<div class="alert alert-success">${t.msgSuccess}</div>`;
+        form.reset();
+      }, function (error) {
+        const t = TRANSLATIONS[currentLang];
+        if (statusEl) statusEl.innerHTML =
+          `<div class="alert alert-danger">${t.msgError}${error.text ?? 'desconocido'}</div>`;
+      });
+  });
+}
+
+// ============================================================
 //  Inicialización
 // ============================================================
 
 onDomReady(() => {
-  // Conectar botón de idioma
-  document.getElementById('lang-toggle')?.addEventListener('click', toggleLang);
-
   // Aplicar idioma por defecto (ES)
   applyTranslation('es');
+
+  // Conectar botón de idioma
+  document.getElementById('lang-toggle')?.addEventListener('click', toggleLang);
 
   initRevealOnScroll();
   initSmoothNav();
   initActiveSectionHighlight();
   initNavbarScrollStyle();
   initStackTabs();
+  initBackToTop();
+  initEmailJS();
   runTerminalSequence();
   initConstellation();
   initGears();
@@ -517,7 +560,6 @@ function initConstellation() {
     ['js','api'],['java','unit'],['spring','micro'],['aws','micro'],
   ];
 
-  // Estrellas generadas una sola vez (deterministas, sin Math.random)
   const STARS = Array.from({ length: 70 }, (_, i) => ({
     x: ((i * 2654435769 >>> 0) % 10000) / 10000,
     y: ((i * 2246822519 >>> 0) % 10000) / 10000,
@@ -532,6 +574,7 @@ function initConstellation() {
 
   const ctx = canvas.getContext('2d');
   let W = 0, H = 0, nodes = [], hoverId = null;
+  let rafId = null;
 
   function buildNodes(w, h) {
     const cx = w / 2, cy = h / 2, R = Math.min(w, h) * 0.38;
@@ -592,7 +635,7 @@ function initConstellation() {
       ctx.setLineDash(isHov ? [] : [3, 4]);
       ctx.beginPath(); ctx.moveTo(na.x, na.y); ctx.lineTo(nb.x, nb.y); ctx.stroke();
       ctx.restore();
-      // Pulso viajero al hacer hover
+
       if (isHov) {
         const t2 = (ts / 700) % 1;
         ctx.save(); ctx.globalAlpha = 0.9;
@@ -625,14 +668,12 @@ function initConstellation() {
       ctx.restore();
     });
 
-    requestAnimationFrame(draw);
+    rafId = requestAnimationFrame(draw);
   }
 
-  // Arranque
   setSize();
-  requestAnimationFrame(draw);
+  rafId = requestAnimationFrame(draw);
 
-  // Resize con debounce — no reinicia nodos si el tamaño no cambió
   let rsz = null;
   new ResizeObserver(() => {
     clearTimeout(rsz);
@@ -679,7 +720,6 @@ function initGears() {
     { name: 'Inglés B1 — lectura técnica avanzada',desc: 'Consumo documentación técnica, RFCs y papers en inglés sin fricción.',                       color: '#7ee787' },
   ];
 
-  // Genera el path de un engranaje centrado en (0,0)
   function gearPath(teeth, R, r) {
     const step = Math.PI * 2 / teeth, half = step * 0.38;
     let d = '';
@@ -695,8 +735,6 @@ function initGears() {
     return d + 'Z';
   }
 
-  // Pinta los paths de cada engranaje
-  // Centro: 16 dientes R=64 r=56 | Satélites: 10 dientes R=44 r=38
   [[16, 64, 56], [10, 44, 38], [10, 44, 38], [10, 44, 38], [10, 44, 38], [10, 44, 38], [10, 44, 38]]
     .forEach(([t, R, r], i) => {
       const el = document.getElementById('gp' + i);
@@ -704,7 +742,7 @@ function initGears() {
     });
 
   const angles  = [0, 0, 0, 0, 0, 0, 0];
-  const dirs    = [1, -1, 1, -1, 1, -1, 1];   // alternados para simular engrane real
+  const dirs    = [1, -1, 1, -1, 1, -1, 1];
   const speeds  = [0.3, 0.54, 0.54, 0.54, 0.54, 0.54, 0.54];
   const centers = [[340, 198], [340, 84], [468, 136], [468, 260], [340, 312], [212, 260], [212, 136]];
 
@@ -713,7 +751,6 @@ function initGears() {
   const nameEl = document.getElementById('gears-name');
   const descEl = document.getElementById('gears-desc');
 
-  // Hover sobre cada engranaje
   document.querySelectorAll('.gear-grp').forEach(g => {
     const i = +g.dataset.idx;
     g.addEventListener('mouseenter', () => {
@@ -728,14 +765,12 @@ function initGears() {
     });
   });
 
-  // Loop de rotación
   function tick(ts) {
     if (!lastTs) lastTs = ts;
     const dt = Math.min((ts - lastTs) / 1000, 0.05);
     lastTs = ts;
 
     angles.forEach((_, i) => {
-      // Al hacer hover el sistema frena suavemente
       angles[i] += dirs[i] * speeds[i] * dt * (hovered !== null ? 0.12 : 1) * 60;
     });
 
